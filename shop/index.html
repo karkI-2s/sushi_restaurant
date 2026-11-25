@@ -1,0 +1,720 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}Home | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== BANNER ===== */
+.banner{
+height:520px;
+background:url("{% static 'css/images/sujn.png' %}") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+position:relative;
+}
+
+.banner h1{
+font-size:60px;
+letter-spacing:6px;
+}
+
+.banner p{
+font-size:20px;
+}
+
+/* ===== VIDEOS ===== */
+.videos{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+padding:50px 40px;
+}
+
+.video-box{
+position:relative;
+}
+
+.video-box video{
+width:100%;
+border-radius:15px;
+}
+
+.video-overlay{
+position:absolute;
+bottom:20px;
+left:20px;
+color:white;
+background:rgba(0, 0, 0, 0);
+padding:20px;
+border-radius:10px;
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+padding:60px 40px;
+text-align:center;
+}
+
+.gallery h2{
+margin-bottom:40px;
+color:#E63946;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+position:relative;
+overflow:hidden;
+border-radius:15px;
+}
+
+.card img{
+width:100%;
+transition:0.4s;
+}
+
+.card:hover img{
+transform:scale(1.1);
+}
+
+.overlay{
+position:absolute;
+bottom:0;
+background:rgba(57, 19, 230, 0.88);
+color:white;
+width:100%;
+padding:15px;
+transform:translateY(100%);
+transition:0.4s;
+}
+
+.card:hover .overlay{
+transform:translateY(0);
+}
+
+/* ===== ABOUT ===== */
+.about{
+padding:60px 40px;
+text-align:center;
+background:#f8f8f8;
+}
+
+.about p{
+max-width:700px;
+margin:auto;
+line-height:1.7;
+color:green;
+}
+
+/* ===== HOURS ===== */
+.hours{
+padding:60px;
+text-align:center;
+}
+
+.hours table{
+margin:auto;
+border-collapse:collapse;
+width:60%;
+}
+
+.hours th,.hours td{
+border:1px solid #12ee37;
+padding:12px;
+}
+
+.hours th{
+background:#E63946;
+color:white;
+}
+
+/* ===== STATUS ===== */
+.restaurant-status{
+padding:50px;
+text-align:center;
+background:grey;
+}
+
+.status-box{
+font-size:28px;
+font-weight:bold;
+}
+
+/* ===== MAP ===== */
+.map-section{
+padding:60px;
+text-align:center;
+background:#f8f8f8;
+}
+
+.map-container{
+max-width:900px;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.reviews{
+padding:80px;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+/* REVIEW CARDS */
+
+.review-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+margin-top:40px;
+}
+
+.review-card{
+background:#1e293b;
+padding:25px;
+border-radius:15px;
+width:260px;
+transition:0.4s;
+animation:fadeUp 0.6s;
+}
+
+.review-card:hover{
+transform:translateY(-10px);
+}
+
+.review-card img{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.stars{
+color:gold;
+margin:5px;
+}
+
+/* LIKE BUTTON */
+
+.like{
+cursor:pointer;
+color:blue;
+margin-top:10px;
+}
+
+/* DELETE */
+
+.delete{
+color:red;
+cursor:pointer;
+margin-top:5px;
+font-size:14px;
+}
+
+/* FORM */
+
+.review-form input,
+.review-form textarea{
+display:block;
+width:280px;
+margin:10px auto;
+padding:10px;
+border:none;
+border-radius:8px;
+}
+
+.star-select span{
+font-size:28px;
+cursor:pointer;
+opacity:0.4;
+}
+
+.star-select span.active{
+opacity:1;
+transform:scale(1.2);
+}
+
+button{
+padding:12px 25px;
+background:#ff4d4d;
+border:none;
+border-radius:25px;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff2222;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== NEWS ===== */
+.news-section{
+padding:80px 10%;
+background:#0f172a;
+text-align:center;
+}
+
+.news-title{
+font-size:40px;
+margin-bottom:50px;
+color:white;
+}
+
+.news-container{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.news-card{
+width:300px;
+padding:40px;
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+text-decoration:none;
+color:white;
+transition:0.4s;
+}
+
+.news-card:hover{
+transform:translateY(-10px) scale(1.05);
+background:rgba(255,255,255,0.15);
+}
+
+.news-icon{
+font-size:50px;
+margin-bottom:15px;
+}
+
+/* ===== SOCIAL ===== */
+.social-bar{
+position:fixed;
+right:20px;
+bottom:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.social{
+background:green;
+color:white;
+padding:12px;
+border-radius:50%;
+text-align:center;
+}
+.about{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.about h2{
+    font-size:36px;
+}
+
+.gold-text{
+    color:#D4AF37;
+    font-weight: bold;
+}
+
+.about p{
+    color: gold;
+    font-size:18px;
+    max-width:700px;
+    margin:auto;
+}
+</style>
+
+<!-- BANNER -->
+<section class="banner">
+<div>
+<h1>🐟 UB SUSHI 🐟</h1>
+<p>Experience Authentic Japanese Dining🍣🐟</p>
+</div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos">
+
+<div class="video-box">
+<video autoplay muted loop>
+<source src="{% static 'css/videos/hero_pc.mp4' %}" type="video/mp4">
+</video>
+<div class="video-overlay">
+<h2>Experience Authentic Sushi</h2>
+<p>Watch our master chefs craft sushi with precision.</p>
+</div>
+</div>
+
+<div class="video-box">
+<video autoplay muted loop>
+<source src="{% static 'css/videos/omakase_pc.mp4' %}" type="video/mp4">
+</video>
+<div class="video-overlay">
+<h2>Premium Omakase Journey</h2>
+<p>A curated dining experience with seasonal ingredients.</p>
+</div>
+</div>
+
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+
+<h2>Our Restaurant Interior</h2>
+
+<div class="gallery-grid">
+
+<div class="card">
+<img src="{% static 'css/images/carr5.jpg' %}">
+<div class="overlay">Elegant Dining Space</div>
+</div>
+
+<div class="card">
+<img src="{% static 'css/images/carr4.jpg' %}">
+<div class="overlay">Modern Sushi Counter</div>
+</div>
+
+<div class="card">
+<img src="{% static 'css/images/carr3.jpg' %}">
+<div class="overlay">Private Seating Area</div>
+</div>
+
+<div class="card">
+<img src="{% static 'css/images/carr2.jpg' %}">
+<div class="overlay">Traditional Design</div>
+</div>
+
+<div class="card">
+<img src="{% static 'css/images/carr1.jpg' %}">
+<div class="overlay">Warm Wooden Atmosphere</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+<h2>Experience Authentic Japanese Dining</h2>
+<p>
+UB Sushi Restaurant offers a refined dining experience inspired by traditional Japanese aesthetics.
+Enjoy fresh sushi prepared by expert chefs in a calm and elegant atmosphere.
+</p>
+</section>
+
+<!-- HOURS -->
+<section class="hours">
+<h2>Opening Hours</h2>
+
+<table>
+<tr><th>Day</th><th>Open</th><th>Close</th></tr>
+<tr><td>Mon</td><td>10:00</td><td>21:00</td></tr>
+<tr><td>Tue</td><td>10:00</td><td>21:00</td></tr>
+<tr><td>Wed</td><td>10:00</td><td>21:00</td></tr>
+<tr><td>Thu</td><td>10:00</td><td>22:00</td></tr>
+<tr><td>Fri</td><td>10:00</td><td>23:00</td></tr>
+<tr><td>Sat</td><td>09:00</td><td>23:00</td></tr>
+<tr><td>Sun</td><td>09:00</td><td>20:00</td></tr>
+</table>
+
+</section>
+
+<!-- STATUS -->
+<section class="restaurant-status">
+<h2>Restaurant Status</h2>
+<div class="status-box" id="status-text">Checking...</div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+<h2>Our Location</h2>
+<div class="map-container">
+<iframe src="https://www.google.com/maps?q=魚べい 新潟近江店&output=embed"
+width="100%" height="400"></iframe>
+</div>
+</section>
+
+<!-- REVIEW FORM -->
+
+<div <section class="reviews">
+
+<h2>Customer Reviews</h2>
+
+<h3>Average Rating: <span id="avgRating">0</span> ⭐</h3>
+
+<div id="reviewContainer" class="review-container"></div>
+
+<div class="review-form">
+
+<input type="text" id="name" placeholder="Your Name">
+
+<textarea id="message" placeholder="Write your review"></textarea>
+
+<input type="file" id="photo">
+
+<!-- STAR RATING -->
+
+<div class="star-select">
+
+<span data-star="1">⭐</span>
+<span data-star="2">⭐</span>
+<span data-star="3">⭐</span>
+<span data-star="4">⭐</span>
+<span data-star="5">⭐</span>
+
+</div>
+
+<button onclick="addReview()">Submit Review</button>
+
+</div>
+
+</section>
+
+<section class="news-section">
+
+<h2 class="news-title">Latest News</h2>
+
+<div class="news-container">
+
+<a href="{% url 'opening_event' %}" class="news-card">
+
+<div class="news-icon">🎉</div>
+
+<h3>Opening Event Celebration</h3>
+
+<p>
+UB Sushi celebrated its grand opening with a live sushi
+show and complimentary tasting for our guests.
+</p>
+
+</a>
+
+
+<a href="{% url 'seasonal_menu' %}" class="news-card">
+
+<div class="news-icon">🍣</div>
+
+<h3>New Seasonal Sushi Menu</h3>
+
+<p>
+Experience fresh seasonal ingredients carefully prepared
+by our sushi masters.
+</p>
+
+</a>
+
+
+<a href="{% url 'private_room' %}" class="news-card">
+
+<div class="news-icon">🥢</div>
+
+<h3>Private Room Reservation</h3>
+
+<p>
+Enjoy a premium dining experience in our elegant
+private rooms.
+</p>
+
+</a>
+
+</div>
+
+</section>
+
+<script>
+
+/* restaurant open close */
+
+function checkRestaurantStatus(){
+
+const now=new Date()
+const hour=now.getHours()
+
+let status=document.getElementById("status-text")
+
+if(hour>=10 && hour<21){
+status.innerHTML="🟢 We are OPEN"
+status.style.color="green"
+}else{
+status.innerHTML="🔴 We are CLOSED"
+status.style.color="red"
+}
+
+}
+
+checkRestaurantStatus()
+
+/* review system */
+
+let rating=0
+
+/* STAR CLICK */
+
+document.querySelectorAll(".star-select span").forEach(star=>{
+
+star.addEventListener("click",function(){
+
+rating=this.dataset.star
+
+document.querySelectorAll(".star-select span").forEach(s=>s.classList.remove("active"))
+
+for(let i=0;i<rating;i++){
+document.querySelectorAll(".star-select span")[i].classList.add("active")
+}
+
+})
+
+})
+
+
+/* LOAD SAVED REVIEWS */
+
+let reviews=JSON.parse(localStorage.getItem("reviews")) || []
+
+showReviews()
+
+function showReviews(){
+
+let container=document.getElementById("reviewContainer")
+
+container.innerHTML=""
+
+let total=0
+
+reviews.forEach((r,index)=>{
+
+total+=r.rating
+
+container.innerHTML+=`
+
+<div class="review-card">
+
+<img src="${r.photo}">
+
+<h4>${r.name}</h4>
+
+<div class="stars">${"⭐".repeat(r.rating)}</div>
+
+<p>${r.message}</p>
+
+<div class="like" onclick="likeReview(${index})">❤️ ${r.likes}</div>
+
+<div class="delete" onclick="deleteReview(${index})">Delete</div>
+
+</div>
+
+`
+
+})
+
+let avg=reviews.length ? (total/reviews.length).toFixed(1) : 0
+
+document.getElementById("avgRating").innerText=avg
+
+}
+
+
+/* ADD REVIEW */
+
+function addReview(){
+
+let name=document.getElementById("name").value
+
+let message=document.getElementById("message").value
+
+let photoInput=document.getElementById("photo")
+
+let img="https://via.placeholder.com/70"
+
+if(photoInput.files.length>0){
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+saveReview(e.target.result)
+
+}
+
+reader.readAsDataURL(photoInput.files[0])
+
+}else{
+
+saveReview(img)
+
+}
+
+function saveReview(photo){
+
+reviews.push({
+
+name:name,
+
+message:message,
+
+rating:parseInt(rating),
+
+photo:photo,
+
+likes:0
+
+})
+
+localStorage.setItem("reviews",JSON.stringify(reviews))
+
+showReviews()
+
+}
+
+}
+
+
+/* LIKE */
+
+function likeReview(i){
+
+reviews[i].likes++
+
+localStorage.setItem("reviews",JSON.stringify(reviews))
+
+showReviews()
+
+}
+
+
+/* DELETE */
+
+function deleteReview(i){
+
+reviews.splice(i,1)
+
+localStorage.setItem("reviews",JSON.stringify(reviews))
+
+showReviews()
+
+}
+</script>
+
+{% endblock %}

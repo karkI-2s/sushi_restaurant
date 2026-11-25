@@ -1,0 +1,290 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Fitness Center | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#300000,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:420px;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/gym.jpg' %}") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:65px;
+    background:linear-gradient(90deg,#ff0000,#ff4d4d,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #2600ff;}
+    to{ text-shadow:0 0 40px #00ff2a;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:90px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(255,0,0,0.3);
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
+}
+
+/* DESCRIPTION */
+.desc{
+    text-align:center;
+    font-size:18px;
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:50px;
+}
+
+/* GRID */
+.gym-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+.gym-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    transform-style:preserve-3d;
+    box-shadow:0 0 30px rgba(255,0,0,0.2);
+}
+
+.gym-card:hover{
+    transform:rotateY(8deg) rotateX(5deg) scale(1.07);
+    box-shadow:0 0 70px rgba(255,0,0,0.8);
+}
+
+.gym-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.gym-card:hover img{
+    transform:scale(1.1);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top,rgba(0,0,0,0.9),rgba(0,0,0,0.2));
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    opacity:0;
+    transition:.5s;
+    transform:translateY(50px);
+}
+
+.overlay h3{
+    color:#ff4d4d;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.overlay p{
+    color:#ddd;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.gym-card:hover .overlay{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BUTTONS */
+.join-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff0000,#ff4d4d);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.4s;
+    border:none;
+}
+
+.join-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ff0000;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ffffff,#cccccc);
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px #ffffff;
+}
+
+.center{text-align:center;}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px red;
+    animation: popup .4s ease;
+}
+
+@keyframes popup{
+    from{transform:scale(.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:red;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+    color:white;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Elite Fitness Center</h1>
+</div>
+
+<div class="section">
+<div class="glass-box">
+
+<div class="desc">
+Train like a champion at UB Sushi Hotel Fitness Center.
+Our modern gym includes premium equipment, personal training support,
+cardio zone and strength training area available 24/7 for guests.
+</div>
+
+<div class="gym-grid">
+
+<div class="gym-card">
+<img src="{% static 'css/images/g1.jpg' %}">
+<div class="overlay">
+<h3>Strength Training</h3>
+<p>Advanced weight machines and free weights for full-body muscle training.</p>
+</div>
+</div>
+
+<div class="gym-card">
+<img src="{% static 'css/images/g2.jpg' %}">
+<div class="overlay">
+<h3>Cardio Zone</h3>
+<p>Treadmills, bikes and rowing machines with digital tracking system.</p>
+</div>
+</div>
+
+<div class="gym-card">
+<img src="{% static 'css/images/g3.jpg' %}">
+<div class="overlay">
+<h3>Personal Training</h3>
+<p>Certified trainers available to guide and customize your workout plan.</p>
+</div>
+</div>
+
+<div class="gym-card">
+<img src="{% static 'css/images/g4.jpg' %}">
+<div class="overlay">
+<h3>Luxury Interior</h3>
+<p>Spacious modern interior with premium lighting and energetic ambiance.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="join-btn" onclick="openModal()">Join Gym Session</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<!-- JOIN MODAL -->
+<div class="modal" id="gymModal">
+<div class="modal-content">
+<h2>Membership Activated 💪</h2>
+<p>You are now registered for the Fitness Center. Stay strong!</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("gymModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("gymModal").style.display="none";
+}
+</script>
+
+{% endblock %}

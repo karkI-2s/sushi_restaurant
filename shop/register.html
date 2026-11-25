@@ -1,0 +1,96 @@
+{% extends 'shop/base.html' %}
+{% load static %}   {# ← MUST be at the top before using static #}
+
+{% block title %}Register | UB Sushi{% endblock %}
+
+{% block content %}
+<style>
+/* ===== Background Animation (floating sushi) ===== */
+body {
+    background: url("{% static 'images/sushi-bg.png' %}") repeat;
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 0; }
+}
+
+/* ===== Register Form ===== */
+.register-container {
+    width: 400px;
+    margin: 50px auto;
+    background: rgba(13, 231, 97, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form Fields */
+.register-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* 3D Hover Button */
+.register-container button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2b07f3;
+    background: #ff4d4d;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px #d43d3d;
+    transition: all 0.2s ease;
+}
+
+.register-container button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px #d43d3d;
+}
+.register-container button:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px #d43d3d;
+}
+
+/* Success Message */
+.success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+</style>
+
+<div class="register-container">
+    <h2>Register</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success-message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Payment | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== PAGE BACKGROUND ===== */
+.payment-bg {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    padding: 80px 0;
+    min-height: 70vh;
+}
+
+/* ===== PAYMENT CARD ===== */
+.payment-box {
+    width: 450px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    text-align: center;
+    transform: translateY(-40px);
+    opacity: 0;
+    transition: 0.6s ease;
+}
+
+.payment-box.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.payment-box h2 {
+    color: #ff4500;
+    margin-bottom: 10px;
+}
+
+.payment-box p {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* ===== PAYMENT OPTIONS ===== */
+.payment-options {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.payment-options label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ===== BUTTON ===== */
+.pay-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pay-btn:hover {
+    background: #e63900;
+    transform: translateY(-3px);
+}
+
+.pay-btn:active {
+    transform: translateY(2px);
+}
+
+</style>
+
+<div class="payment-bg">
+
+    <div class="payment-box" id="paymentBox">
+
+        <h2>💳 Payment</h2>
+        <p>Select your preferred payment method</p>
+
+        <form method="post" action="{% url 'success' %}">
+            {% csrf_token %}
+
+            <div class="payment-options">
+                <label>
+                    <input type="radio" name="payment_method" value="cod" checked>
+                    🚚 Cash on Delivery
+                </label>
+
+                <label>
+                    <input type="radio" name="payment_method" value="card">
+                    💳 Pay with Card
+                </label>
+            </div>
+
+            <button type="submit" class="pay-btn">
+                🔥 Confirm Payment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("paymentBox").classList.add("show");
+});
+</script>
+
+{% endblock %}

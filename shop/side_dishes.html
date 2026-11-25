@@ -1,0 +1,261 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Side Dishes | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ===== BANNER WITH IMAGE ===== */
+/* ===== SIDE BANNER (FULL IMAGE SHOW) ===== */
+.side-banner{
+    position: relative;
+    width:100%;
+    height: 500px; /* adjust height */
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    background: url("{% static 'css/images/sidebanner.jpg' %}") no-repeat center;
+
+    background-size: contain; /* FULL IMAGE SHOW */
+    background-color: #020617; /* side gap fill */
+}
+
+/* TEXT */
+.side-banner h1{
+    font-size:50px;
+    color:white;
+    text-shadow: 2px 2px 10px black;
+}
+
+/* ===== ITEMS ===== */
+.items-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 60px 6%;
+    background: linear-gradient(to bottom, #fff8f6, #ffeaea);
+}
+
+.item-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.4s ease;
+    padding-bottom: 20px;
+}
+
+.item-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+}
+
+.item-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.item-card h3 {
+    margin: 15px 0 8px;
+    color: #ff4500;
+}
+
+.item-card p {
+    font-size: 14px;
+    color: #555;
+    padding: 0 15px;
+}
+
+.price {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff4500;
+    margin: 10px 0;
+}
+
+/* BUTTONS */
+.add-btn, .buy-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    margin:5px;
+    transition: 0.3s;
+    cursor:pointer;
+    border:none;
+}
+
+.add-btn {
+    background: #ff4500;
+    color: white;
+    text-decoration:none;
+}
+
+.add-btn:hover { background:#e63900; }
+
+.buy-btn {
+    background: #222;
+    color: white;
+}
+
+.buy-btn:hover { background:#444; }
+
+/* SUCCESS POPUP */
+.success-popup{
+    display:none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:green;
+    color:white;
+    padding:15px 25px;
+    border-radius:8px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    z-index:999;
+}
+
+/* ===== DESCRIPTION SECTION WITH YOUR PHOTO ===== */
+.side-description {
+    position: relative;
+    background: url("{% static 'css/images/yourphoto.jpg' %}") center/cover no-repeat;
+    padding: 120px 10%;
+    text-align:center;
+    color:white;
+}
+
+.side-description::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.side-description *{
+    position:relative;
+    z-index:2;
+}
+
+.floating-title{
+    font-size:36px;
+    margin-bottom:40px;
+    animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-12px); }
+    100%{ transform:translateY(0px); }
+}
+
+.desc-box{
+    background:rgba(255,255,255,0.95);
+    color:black;
+    padding:25px;
+    margin:20px auto;
+    border-radius:15px;
+    max-width:800px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:0.4s;
+}
+
+.desc-box:hover{
+    transform:scale(1.05);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+    .items-container{ grid-template-columns: repeat(3,1fr);}
+}
+@media(max-width:992px){
+    .items-container{ grid-template-columns: repeat(2,1fr);}
+}
+@media(max-width:600px){
+    .items-container{ grid-template-columns:1fr;}
+    .side-banner h1{ font-size:28px;}
+}
+
+</style>
+
+<!-- SUCCESS POPUP -->
+<div class="success-popup" id="successPopup">
+    Item added successfully 🛒
+</div>
+
+<!-- BANNER -->
+<div class="side-banner">
+    <h1>🔥Delicious🔥</h1>
+</div>
+
+<!-- ITEMS -->
+<div class="items-container">
+
+{% for item in items %}
+<div class="item-card">
+
+{% if item.image %}
+<img src="{{ item.image.url }}" alt="{{ item.name }}">
+{% else %}
+<img src="{% static 'css/images/car32.jpg' %}" alt="No Image">
+{% endif %}
+
+<h3>{{ item.name }}</h3>
+<p>{{ item.description }}</p>
+<span class="price">¥{{ item.price }}</span>
+
+<a href="{% url 'add_to_cart' item.id %}" class="add-btn" onclick="showSuccess()">🛒 Add to Cart</a>
+<button class="buy-btn" onclick="showSuccess()">⚡ Buy Now</button>
+
+</div>
+{% empty %}
+<div style="text-align:center; padding:50px; color:red;">
+No side dishes available.
+</div>
+{% endfor %}
+
+</div>
+
+<!-- DESCRIPTION SECTION -->
+<div class="side-description">
+
+<h2 class="floating-title">🍣 UB Sushi Side Dishes 🍣</h2>
+
+<div class="desc-box">
+Our side dishes are crafted with authentic Japanese flavors and premium ingredients that melt in your mouth.
+</div>
+
+<div class="desc-box">
+Each bite delivers a perfect balance of crunch, spice, and umami that makes customers fall in love instantly.
+</div>
+
+<div class="desc-box">
+Prepared fresh daily by expert chefs, ensuring restaurant-quality taste every single time.
+</div>
+
+<div class="desc-box">
+Perfectly paired with sushi rolls to create a complete unforgettable dining experience.
+</div>
+
+</div>
+
+<script>
+function showSuccess(){
+    let popup = document.getElementById("successPopup");
+    popup.style.display="block";
+    setTimeout(()=>{
+        popup.style.display="none";
+    },2000);
+}
+</script>
+
+{% endblock %}

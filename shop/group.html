@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👨‍👩‍👧‍👦 Group Friendly Dining</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#020617,#1e1b4b);
+color:white;
+overflow-x:hidden;
+}
+
+/* ===== NAV ===== */
+.top-nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:15px 25px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.hamburger{
+font-size:28px;
+cursor:pointer;
+display:none;
+}
+
+.menu{
+display:flex;
+gap:20px;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.menu{
+position:absolute;
+top:60px;
+right:0;
+background:#111;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+}
+.menu.active{display:flex;}
+.hamburger{display:block;}
+}
+
+/* ===== HERO ===== */
+.hero{
+height:80vh;
+background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+url("https://images.unsplash.com/photo-1528605248644-14dd04022da1") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+background:linear-gradient(45deg,#ff00cc,#00ffff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:20px;
+}
+
+/* ===== INTRO ===== */
+.intro{
+text-align:center;
+padding:50px;
+max-width:900px;
+margin:auto;
+}
+
+/* ===== SLIDER ===== */
+.slider{
+width:90%;
+margin:40px auto;
+overflow:hidden;
+}
+
+.track{
+display:flex;
+animation:scroll 20s linear infinite;
+}
+
+.track img{
+width:260px;
+height:180px;
+margin-right:15px;
+border-radius:15px;
+object-fit:cover;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* ===== CARDS ===== */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:linear-gradient(145deg,#111,#1e1b4b);
+border-radius:20px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.1) rotateZ(2deg);
+box-shadow:0 15px 40px rgba(255,0,255,0.5);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card h3{
+padding:10px;
+color:#ff00cc;
+}
+
+.card p{
+padding:0 12px 15px;
+}
+
+/* ===== WHY ===== */
+.why{
+padding:50px;
+text-align:center;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.why-box{
+background:#111;
+padding:20px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.why-box:hover{
+background:linear-gradient(45deg,#ff00cc,#00ffff);
+color:black;
+transform:translateY(-10px);
+}
+
+/* ===== BOOKING ===== */
+.booking{
+text-align:center;
+padding:50px;
+}
+
+input{
+padding:12px;
+margin:10px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:12px 25px;
+background:linear-gradient(45deg,#ff00cc,#00ffff);
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ===== MAP ===== */
+.map{
+text-align:center;
+padding:40px;
+}
+
+iframe{
+width:90%;
+height:300px;
+border-radius:20px;
+}
+
+/* ===== BACK ===== */
+.back-home{
+text-align:center;
+margin:50px;
+}
+
+.home-btn{
+padding:14px 30px;
+background:linear-gradient(45deg,#ff00cc,#00ffff);
+color:black;
+border-radius:30px;
+text-decoration:none;
+}
+
+/* ===== PARTY ANIMATION ===== */
+.party{
+position:fixed;
+bottom:0;
+font-size:22px;
+animation:floatUp 5s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);}
+100%{transform:translateY(-800px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>👨‍👩‍👧‍👦 Group Friendly Dining</h1>
+<p>Fun • Friends • Celebration 🎉</p>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+<h2>🎊 Enjoy Together</h2>
+<p>
+Group dining is all about sharing happiness, laughter, and amazing food.  
+From birthday parties to hangouts, our sushi spaces are designed for large groups with fun vibes and memorable moments.
+</p>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="track">
+<img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+
+<img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+</div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1">
+<h3>🎉 Kathmandu Party Spot</h3>
+<p>Perfect for birthdays and celebrations.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<h3>🍱 Pokhara Group Dining</h3>
+<p>Large seating with scenic views.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<h3>🌃 Tokyo Group Fun</h3>
+<p>Modern vibrant sushi party vibe.</p>
+</div>
+</div>
+
+<!-- WHY -->
+<div class="why">
+<h2>🔥 Why Group Dining?</h2>
+<div class="why-grid">
+<div class="why-box">🎉 Party atmosphere</div>
+<div class="why-box">👨‍👩‍👧‍👦 Large seating</div>
+<div class="why-box">🍣 Combo meals</div>
+<div class="why-box">📸 Fun memories</div>
+</div>
+</div>
+
+<!-- BOOKING -->
+<div class="booking">
+<h2>🎊 Book Your Group</h2>
+<input type="text" placeholder="Your Name">
+<input type="date">
+<button onclick="alert('Group Reserved 🎉')">Reserve</button>
+</div>
+
+<!-- MAP -->
+<div class="map">
+<h2>📍 Visit Us</h2>
+<iframe src="https://maps.google.com/maps?q=kathmandu&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
+<!-- BACK -->
+<div class="back-home">
+<a href="/" class="home-btn">🏠 Back Home</a>
+</div>
+
+<!-- JS -->
+<script>
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="party";
+p.innerHTML="🎉";
+p.style.left=Math.random()*100+"%";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),5000);
+},600);
+</script>
+
+</body>
+</html>

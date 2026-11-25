@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Opening Event | UB Restaurant & Hotel</title>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+height:60vh;
+background:
+linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+url("{% static 'css/images/1a.jpg' %}") center/cover no-repeat;
+
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+/* 3D TITLE */
+
+.hero h1{
+
+font-size:55px;
+letter-spacing:4px;
+text-transform:uppercase;
+
+text-shadow:
+2px 2px 0 #ff0000,
+4px 4px 0 #000,
+8px 8px 20px rgba(0,0,0,0.7);
+
+animation: floatText 3s infinite ease-in-out;
+
+}
+
+@keyframes floatText{
+
+0%{ transform:translateY(0px) rotateX(0deg); }
+
+50%{ transform:translateY(-10px) rotateX(10deg); }
+
+100%{ transform:translateY(0px) rotateX(0deg); }
+
+}
+
+/* SECTION */
+
+.section{
+
+padding:80px 10%;
+text-align:center;
+
+}
+
+.section h2{
+
+font-size:38px;
+margin-bottom:40px;
+
+}
+/* VIDEO SECTION */
+
+.section{
+text-align:center;
+padding:60px 10%;
+}
+
+/* 2 video in one row */
+
+.video-row{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+/* video box */
+
+.video-box{
+width:40%;   /* slightly smaller */
+}
+
+/* video size */
+
+.video-box video{
+width:100%;
+height:180px;   /* smaller height */
+object-fit:cover;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+transition:0.4s;
+}
+
+/* hover animation */
+
+.video-box video:hover{
+transform:scale(1.05);
+}
+
+/* description */
+
+.video-desc{
+margin-top:10px;
+font-size:15px;
+opacity:0.85;
+line-height:1.5;
+}
+
+/* GALLERY */
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+padding:40px 10%;
+
+}
+
+.gallery-item{
+
+position:relative;
+
+overflow:hidden;
+
+border-radius:20px;
+
+}
+
+.gallery img{
+
+width:100%;
+
+display:block;
+
+transition:0.6s;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+.gallery-item:hover img{
+
+transform:scale(1.15) rotateY(10deg);
+
+}
+
+/* PHOTO DESCRIPTION */
+
+.photo-info{
+
+position:absolute;
+
+bottom:0;
+
+background:rgba(0,0,0,0.6);
+
+width:100%;
+
+padding:10px;
+
+font-size:14px;
+
+text-align:center;
+
+}
+
+/* REVIEW SECTION */
+
+.review-section{
+
+padding:80px 10%;
+
+background:#111827;
+
+text-align:center;
+
+}
+
+.review-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+margin-top:40px;
+
+}
+
+.review-card{
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(10px);
+
+border-radius:20px;
+
+padding:25px;
+
+transition:0.4s;
+
+}
+
+.review-card:hover{
+
+transform:translateY(-10px) scale(1.05);
+
+}
+
+.review-name{
+
+font-weight:bold;
+
+margin-top:10px;
+
+color:#ff4d4d;
+
+}
+
+/* BUTTON */
+
+.home-btn{
+
+display:inline-block;
+
+margin:80px;
+
+padding:15px 40px;
+
+background:#ff4d4d;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:30px;
+
+transition:0.4s;
+
+}
+
+.home-btn:hover{
+
+background:#ff0000;
+
+transform:scale(1.1);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1 data-aos="zoom-in">Opening Event Celebration</h1>
+
+</div>
+
+<!-- VIDEO SECTION -->
+
+<section class="section">
+
+<h2 data-aos="fade-up">Opening Highlights</h2>
+
+<div class="video-row">
+
+<div class="video-box" data-aos="zoom-in">
+
+<video autoplay muted loop>
+<source src="{% static 'css/videos/cc1.mp4' %}" type="video/mp4">
+</video>
+
+<div class="video-desc">
+Grand opening ceremony moment with our special sushi preparation and chef introduction.
+</div>
+
+</div>
+
+<div class="video-box" data-aos="zoom-in">
+
+<video autoplay muted loop>
+<source src="{% static 'css/videos/cc2.mp4' %}" type="video/mp4">
+</video>
+
+<div class="video-desc">
+Guests enjoying premium Japanese cuisine, music and celebration night.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<h2 style="text-align:center;">Event Gallery</h2>
+
+<div class="gallery">
+
+<div class="gallery-item" data-aos="fade-up">
+<img src="{% static 'css/images/1aa.jpg' %}">
+<div class="photo-info">Opening night decoration</div>
+</div>
+
+<div class="gallery-item" data-aos="fade-up">
+<img src="{% static 'css/images/2aa.jpg' %}">
+<div class="photo-info">Guests enjoying sushi</div>
+</div>
+
+<div class="gallery-item" data-aos="fade-up">
+<img src="{% static 'css/images/3aa.jpg' %}">
+<div class="photo-info">Chef preparing premium sushi</div>
+</div>
+
+<div class="gallery-item" data-aos="fade-up">
+<img src="{% static 'css/images/4aa.jpg' %}">
+<div class="photo-info">Traditional Japanese presentation</div>
+</div>
+
+<div class="gallery-item" data-aos="fade-up">
+<img src="{% static 'css/images/5aa.jpg' %}">
+<div class="photo-info">Celebration dinner atmosphere</div>
+</div>
+
+</div>
+
+<!-- CUSTOMER REVIEWS -->
+
+<section class="review-section">
+
+<h2 data-aos="fade-up">Customer Reviews</h2>
+
+<div class="review-container">
+
+<div class="review-card" data-aos="fade-up">
+
+⭐⭐⭐⭐⭐
+
+<p>Best sushi restaurant in the city. The opening event was amazing.</p>
+
+<div class="review-name">— Kenji Sato</div>
+
+</div>
+
+<div class="review-card" data-aos="fade-up">
+
+⭐⭐⭐⭐⭐
+
+<p>Luxury atmosphere and delicious food. I loved the event night.</p>
+
+<div class="review-name">— Maria Lopez</div>
+
+</div>
+
+<div class="review-card" data-aos="fade-up">
+
+⭐⭐⭐⭐
+
+<p>Very beautiful place and professional chefs.</p>
+
+<div class="review-name">— David Chen</div>
+
+</div>
+
+</div>
+
+</section>
+
+<center>
+
+<a href="/" class="home-btn">⬅ Back Home</a>
+
+</center>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+AOS.init({
+duration:1000
+});
+
+</script>
+
+</body>
+</html>

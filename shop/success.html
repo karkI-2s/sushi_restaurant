@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+<div style="text-align:center; padding:100px;">
+    <h1 style="color:green;">✅ Payment Successful!</h1>
+    <p>Thank you for ordering from UB Sushi 🍣</p>
+    <a href="{% url 'index' %}" 
+       style="padding:12px 25px; background:#E63946; color:white; border-radius:8px; text-decoration:none;">
+       Go Home
+    </a>
+</div>
+{% endblock %}

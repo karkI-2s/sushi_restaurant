@@ -1,0 +1,330 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Luxury Bar | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#1a001f,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/ub.jpg' %}") center/cover no-repeat;
+}
+
+.hero h1{
+    font-size:65px;
+    background:linear-gradient(90deg,#ff00cc,#ffcc00,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ff00cc;}
+    to{ text-shadow:0 0 40px #ffcc00;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:80px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(255,0,204,0.3);
+}
+
+/* ================= VIDEO SECTION ================= */
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+    margin-bottom:70px;
+}
+
+.video-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(255,0,204,0.3);
+    transition:.6s;
+}
+
+.video-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(255,204,0,0.8);
+}
+
+.video-card video{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.video-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top,rgba(0,0,0,0.95),transparent);
+}
+
+.video-info h3{
+    margin:0 0 8px 0;
+    color:#ffcc00;
+}
+
+.video-info p{
+    font-size:14px;
+    color:#ddd;
+}
+
+/* ================= PHOTO SECTION ================= */
+
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.photo-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    box-shadow:0 0 30px rgba(255,0,204,0.2);
+}
+
+.photo-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:block;
+    transition:.6s;
+}
+
+/* INFO BOX */
+.card-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+    transform:translateY(60%);
+    transition:.5s;
+}
+
+.card-info h3{
+    margin:0 0 8px 0;
+    font-size:20px;
+    color:#ffcc00;
+}
+
+.card-info p{
+    font-size:14px;
+    color:#ddd;
+    opacity:0;
+    transition:.5s;
+}
+
+/* HOVER EFFECT */
+.photo-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(255,204,0,0.8);
+}
+
+.photo-card:hover img{
+    transform:scale(1.1);
+}
+
+.photo-card:hover .card-info{
+    transform:translateY(0);
+}
+
+.photo-card:hover .card-info p{
+    opacity:1;
+}
+
+/* BUTTONS */
+.order-btn{
+    display:inline-block;
+    margin-top:60px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff00cc,#ffcc00);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    transition:.4s;
+}
+
+.order-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ffcc00;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px white;
+}
+
+.center{text-align:center;}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px #ffcc00;
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:#ffcc00;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Luxury Night Bar</h1>
+</div>
+
+<div class="section">
+<div class="glass-box">
+
+<!-- VIDEOS -->
+<div class="video-grid">
+
+<div class="video-card">
+<video src="{% static 'css/videos/bar1.mp4' %}" autoplay muted loop></video>
+<div class="video-info">
+<h3>Live DJ Night</h3>
+<p>Experience electrifying DJ nights with premium sound system and stunning neon lighting.</p>
+</div>
+</div>
+
+<div class="video-card">
+<video src="{% static 'css/videos/bar2.mp4' %}" autoplay muted loop></video>
+<div class="video-info">
+<h3>Signature Cocktail Show</h3>
+<p>Our expert bartenders craft artistic cocktails with style and world-class presentation.</p>
+</div>
+</div>
+
+</div>
+
+<!-- PHOTOS -->
+<div class="photo-grid">
+
+<div class="photo-card">
+<img src="{% static 'css/images/b1.jpg' %}">
+<div class="card-info">
+<h3>VIP Lounge</h3>
+<p>Exclusive VIP seating area with luxury sofa and private waiter service.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/b2.jpg' %}">
+<div class="card-info">
+<h3>Premium Drinks</h3>
+<p>International whiskey, champagne and handcrafted signature cocktails.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/b3.jpg' %}">
+<div class="card-info">
+<h3>Neon Night Interior</h3>
+<p>Modern nightlife ambiance with colorful LED lighting system.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/b4.jpg' %}">
+<div class="card-info">
+<h3>Private Party Zone</h3>
+<p>Celebrate birthdays and private events in our stylish party zone.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="order-btn" onclick="openModal()">Order Drink</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="barModal">
+<div class="modal-content">
+<h2>Drink Ordered 🍸</h2>
+<p>Your premium drink will be served shortly. Enjoy your night!</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("barModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("barModal").style.display="none";
+}
+</script>
+
+{% endblock %}

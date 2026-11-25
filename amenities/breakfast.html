@@ -1,0 +1,190 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Luxury Breakfast | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#1a1a1a,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:400px;
+    background-image: url("{% static 'css/images/breakfast.jpg' %}");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:60px;
+    background:linear-gradient(90deg,#ff9900,#ff004f,#00e0ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ff9900;}
+    to{ text-shadow:0 0 30px #ff004f;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:80px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:25px;
+    box-shadow:0 0 50px rgba(255,153,0,0.3);
+}
+
+/* GRID */
+.breakfast-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+/* CARD */
+.food-card{
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.5s;
+    transform-style:preserve-3d;
+    box-shadow:0 0 30px rgba(255,0,100,0.2);
+}
+
+.food-card:hover{
+    transform:rotateY(10deg) rotateX(5deg) scale(1.05);
+    box-shadow:0 0 60px rgba(255,0,100,0.6);
+}
+
+.food-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.food-info{
+    padding:20px;
+    text-align:center;
+}
+
+.food-info h3{
+    color:#ff9900;
+    margin-bottom:10px;
+}
+
+.food-info p{
+    color:#ccc;
+    font-size:14px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:inline-block;
+    margin:60px auto 0;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff9900,#ff004f);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+    box-shadow:0 0 20px rgba(255,0,100,0.4);
+}
+
+.back-btn:hover{
+    transform:translateY(-5px) scale(1.08);
+    box-shadow:0 0 40px rgba(255,0,100,0.8);
+}
+
+.center{
+    text-align:center;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Luxury Sushi Breakfast</h1>
+</div>
+
+<div class="section">
+    <div class="glass-box">
+
+        <h2 style="text-align:center;color:#ff9900;">
+            Fresh Every Morning
+        </h2>
+
+        <div class="breakfast-grid">
+
+            <div class="food-card">
+                <img src="{% static 'css/images/break1.jpg' %}">
+                <div class="food-info">
+                    <h3>Salmon Nigiri Set</h3>
+                    <p>Premium fresh salmon served with miso soup & tea.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="{% static 'css/images/break2.jpg' %}">
+                <div class="food-info">
+                    <h3>Avocado Sushi Roll</h3>
+                    <p>Healthy vegetarian roll with fresh avocado.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="{% static 'css/images/break3.jpg' %}">
+                <div class="food-info">
+                    <h3>Japanese Bento Box</h3>
+                    <p>Rice, tamago, grilled fish & seasonal sides.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="{% static 'css/images/break4.jpg' %}">
+                <div class="food-info">
+                    <h3>Sushi & Fruit Platter</h3>
+                    <p>Fresh sushi served with tropical fruits.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="{% static 'css/images/break5.jpg' %}">
+                <div class="food-info">
+                    <h3>Luxury Morning Combo</h3>
+                    <p>Chef’s special breakfast with sushi & coffee.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="center">
+            <a href="{% url 'hotel' %}" class="back-btn">
+                ← Go Back to Hotel Page
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

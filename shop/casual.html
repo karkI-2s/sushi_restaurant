@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍱 Casual Dining</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* ===== NAV ===== */
+.top-nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.hamburger{
+font-size:28px;
+cursor:pointer;
+display:none;
+}
+
+.menu{
+display:flex;
+gap:20px;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.menu{
+position:absolute;
+top:60px;
+right:0;
+background:#111;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+}
+.menu.active{display:flex;}
+.hamburger{display:block;}
+}
+
+/* ===== HERO ===== */
+.hero{
+height:75vh;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:55px;
+color:#ffcc00;
+}
+
+.hero p{
+font-size:18px;
+}
+
+/* ===== INTRO ===== */
+.intro{
+text-align:center;
+padding:50px;
+max-width:900px;
+margin:auto;
+line-height:1.7;
+}
+
+/* ===== SLIDER ===== */
+.slider{
+width:90%;
+margin:40px auto;
+overflow:hidden;
+}
+
+.track{
+display:flex;
+animation:scroll 25s linear infinite;
+}
+
+.track img{
+width:260px;
+height:180px;
+margin-right:15px;
+border-radius:15px;
+object-fit:cover;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* ===== CARDS ===== */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:#0f172a;
+border-radius:20px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.05) rotateY(8deg);
+box-shadow:0 15px 40px rgba(255,204,0,0.5);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card h3{
+color:#ffcc00;
+padding:10px;
+}
+
+.card p{
+padding:0 12px 15px;
+}
+
+/* ===== WHY ===== */
+.why{
+background:#111827;
+padding:50px;
+text-align:center;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.why-box{
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.why-box:hover{
+background:#ffcc00;
+color:black;
+transform:translateY(-10px);
+}
+
+/* ===== BOOKING ===== */
+.booking{
+text-align:center;
+padding:50px;
+}
+
+input{
+padding:12px;
+margin:10px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:12px 25px;
+background:#ffcc00;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ===== MAP ===== */
+.map{
+text-align:center;
+padding:40px;
+}
+
+iframe{
+width:90%;
+height:300px;
+border-radius:20px;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-home{
+text-align:center;
+margin:50px;
+}
+
+.home-btn{
+padding:14px 30px;
+background:#ffcc00;
+color:black;
+border-radius:30px;
+text-decoration:none;
+}
+
+/* ===== ANIMATION ===== */
+.emoji{
+position:fixed;
+bottom:0;
+font-size:20px;
+animation:floatUp 5s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);}
+100%{transform:translateY(-800px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>🍱 Casual Dining Experience</h1>
+<p>Relax • Eat • Enjoy 😋</p>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+<h2>✨ Enjoy Casual Moments</h2>
+<p>
+Casual dining is all about comfort, fun, and good vibes.  
+No pressure, no formality — just delicious sushi, laughter, and relaxing time with friends or family.
+</p>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="track">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+</div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<h3>🍜 Kathmandu Casual</h3>
+<p>Relaxed and affordable sushi dining with friends.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<h3>🌄 Pokhara Chill</h3>
+<p>Enjoy food with a peaceful natural vibe.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+<h3>🏙️ Tokyo Street Sushi</h3>
+<p>Fast, fun, and flavorful Japanese casual dining.</p>
+</div>
+</div>
+
+<!-- WHY -->
+<div class="why">
+<h2>🔥 Why Casual Dining?</h2>
+<div class="why-grid">
+<div class="why-box">😋 Affordable & tasty</div>
+<div class="why-box">👫 Friendly vibe</div>
+<div class="why-box">⚡ Quick service</div>
+<div class="why-box">🎉 Fun atmosphere</div>
+</div>
+</div>
+
+<!-- BOOKING -->
+<div class="booking">
+<h2>📅 Reserve Your Table</h2>
+<input type="text" placeholder="Your Name">
+<input type="date">
+<button onclick="alert('Table Reserved 😋')">Reserve</button>
+</div>
+
+<!-- MAP -->
+<div class="map">
+<h2>📍 Visit Us</h2>
+<iframe src="https://maps.google.com/maps?q=kathmandu&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
+<!-- BACK -->
+<div class="back-home">
+<a href="/" class="home-btn">🏠 Back Home</a>
+</div>
+
+<!-- JS -->
+<script>
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+setInterval(()=>{
+let e=document.createElement("div");
+e.className="emoji";
+e.innerHTML="🍱";
+e.style.left=Math.random()*100+"%";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),5000);
+},800);
+</script>
+
+</body>
+</html>

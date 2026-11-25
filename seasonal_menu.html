@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Seasonal Menu | UB Restaurant & Hotel</title>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+
+height:65vh;
+
+background:
+linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+url("{% static 'css/images/2aaa.jpg' %}") center/cover no-repeat;
+
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:55px;
+letter-spacing:3px;
+
+text-shadow:
+0 5px 10px rgba(0,0,0,0.7),
+0 10px 20px rgba(0,0,0,0.6);
+
+animation:floatText 4s ease-in-out infinite;
+
+}
+
+@keyframes floatText{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+
+}
+
+/* SECTION */
+
+.section{
+padding:80px 10%;
+text-align:center;
+}
+
+/* VIDEO GRID */
+
+.video-grid{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.video-card{
+width:45%;
+text-align:center;
+}
+
+.video-card video{
+width:100%;
+height:220px;   /* small height */
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.video-card h3{
+margin-top:15px;
+font-size:22px;
+}
+
+.video-card p{
+font-size:16px;
+opacity:0.85;
+line-height:1.6;
+}
+
+/* GALLERY */
+
+.gallery{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+padding:60px 10%;
+
+}
+
+.food-card{
+
+background:rgba(255,255,255,0.05);
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:0.5s;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.food-card:hover{
+
+transform:scale(1.05) rotateY(6deg);
+
+}
+
+.food-card img{
+
+width:100%;
+height:200px;
+object-fit:cover;
+
+}
+
+.food-info{
+
+padding:20px;
+
+}
+
+.food-info h3{
+
+margin:0;
+margin-bottom:10px;
+
+}
+
+.food-info p{
+
+color:#cbd5f5;
+font-size:14px;
+line-height:1.6;
+
+}
+
+/* BUTTON */
+
+.btn{
+
+display:inline-block;
+
+margin:80px;
+
+padding:15px 40px;
+
+background:#22c55e;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:30px;
+
+transition:0.4s;
+
+font-size:18px;
+
+}
+
+.btn:hover{
+
+background:#16a34a;
+
+transform:scale(1.1);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1 data-aos="zoom-in">Seasonal Sushi Menu</h1>
+
+</div>
+
+
+<!-- VIDEO SECTION -->
+
+<section class="section">
+
+<h2 data-aos="fade-up">Chef Special Sushi Preparation</h2>
+
+<div class="video-grid">
+
+<!-- VIDEO 1 -->
+
+<div class="video-card" data-aos="zoom-in">
+
+<video autoplay muted loop>
+<source src="{% static 'css/videos/cc.mp4' %}" type="video/mp4">
+</video>
+
+<h3>Sushi Crafting Experience</h3>
+
+<p>
+Watch our master chef carefully craft premium sushi using
+fresh seasonal seafood and traditional Japanese techniques.
+</p>
+
+</div>
+
+
+<!-- VIDEO 2 -->
+
+<div class="video-card" data-aos="zoom-in">
+
+<video autoplay muted loop>
+<source src="{% static 'css/videos/ccc1.mp4' %}" type="video/mp4">
+</video>
+
+<h3>Signature Seasonal Dish</h3>
+
+<p>
+This video highlights one of our most loved seasonal sushi dishes
+prepared with elegant presentation and authentic flavor.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<h2 style="text-align:center;">Seasonal Sushi Gallery</h2>
+
+<div class="gallery">
+
+
+<div class="food-card" data-aos="fade-up">
+
+<img src="{% static 'css/images/1x.jpg' %}">
+
+<div class="food-info">
+
+<h3>Salmon Nigiri</h3>
+
+<p>
+Fresh Atlantic salmon served on perfectly seasoned sushi rice.
+A classic Japanese favorite loved by sushi enthusiasts.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="food-card" data-aos="fade-up">
+
+<img src="{% static 'css/images/2x.jpg' %}">
+
+<div class="food-info">
+
+<h3>Tuna Sushi</h3>
+
+<p>
+Premium tuna slices combined with delicate sushi rice
+create a rich and satisfying seafood flavor.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="food-card" data-aos="fade-up">
+
+<img src="{% static 'css/images/3x.jpg' %}">
+
+<div class="food-info">
+
+<h3>Dragon Roll</h3>
+
+<p>
+A beautifully crafted sushi roll topped with avocado,
+eel sauce, and fresh seafood for a luxurious taste.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="food-card" data-aos="fade-up">
+
+<img src="{% static 'css/images/4x.jpg' %}">
+
+<div class="food-info">
+
+<h3>Shrimp Tempura Roll</h3>
+
+<p>
+Crispy shrimp tempura wrapped in sushi rice and seaweed,
+offering a perfect combination of crunch and flavor.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="food-card" data-aos="fade-up">
+
+<img src="{% static 'css/images/5x.jpg' %}">
+
+<div class="food-info">
+
+<h3>Chef Special Platter</h3>
+
+<p>
+A premium seasonal sushi platter prepared by our chef
+featuring the freshest seafood selections.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<center>
+
+<a href="/" class="btn">⬅ Back Home</a>
+
+</center>
+
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+AOS.init({
+duration:1000,
+once:true
+});
+
+</script>
+
+</body>
+</html>

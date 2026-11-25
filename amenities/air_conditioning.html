@@ -1,0 +1,257 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Air Conditioning | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#001a1f,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0),rgba(255, 255, 255, 0)),
+    url("{% static 'css/images/ac-hero.jpg' %}") center/cover no-repeat;
+}
+
+.hero h1{
+    font-size:60px;
+    background:linear-gradient(90deg,#00f2ff,#00ff99,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ffa600;}
+    to{ text-shadow:0 0 40px #ff00dd;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:80px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgb(255, 230, 0);
+}
+
+/* PHOTO GRID */
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.photo-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    box-shadow:0 0 30px rgba(0,255,255,0.2);
+}
+
+.photo-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+/* INFO */
+.card-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+    transform:translateY(60%);
+    transition:.5s;
+}
+
+.card-info h3{
+    margin:0 0 8px 0;
+    font-size:20px;
+    color:#00ffcc;
+}
+
+.card-info p{
+    font-size:14px;
+    color:#ddd;
+    opacity:0;
+    transition:.5s;
+}
+
+.photo-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(0,255,150,0.8);
+}
+
+.photo-card:hover img{
+    transform:scale(1.1);
+}
+
+.photo-card:hover .card-info{
+    transform:translateY(0);
+}
+
+.photo-card:hover .card-info p{
+    opacity:1;
+}
+
+/* BUTTONS */
+.center{text-align:center;}
+
+.service-btn{
+    display:inline-block;
+    margin-top:60px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#00f2ff,#00ff99);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    transition:.4s;
+}
+
+.service-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #00ffcc;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px white;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px #00ffcc;
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:#00ffcc;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Smart Air Conditioning</h1>
+</div>
+
+<div class="section">
+
+<!-- FEATURES -->
+<div class="photo-grid">
+
+<div class="photo-card">
+<img src="{% static 'css/images/ac1.jpg' %}">
+<div class="card-info">
+<h3>Silent Operation</h3>
+<p>Ultra-quiet air conditioning for peaceful sleep and relaxation.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/ac2.jpg' %}">
+<div class="card-info">
+<h3>Energy Efficient</h3>
+<p>Eco-friendly system designed to reduce power consumption.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/ac3.jpg' %}">
+<div class="card-info">
+<h3>Smart Thermostat</h3>
+<p>Adjust cooling level easily using smart digital controller.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/ac4.jpg' %}">
+<div class="card-info">
+<h3>24/7 Maintenance</h3>
+<p>Our technical team ensures smooth AC performance anytime.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="service-btn" onclick="openModal()">Request AC Service</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<div class="modal" id="acModal">
+<div class="modal-content">
+<h2>Service Requested ❄️</h2>
+<p>Our technical team will assist you shortly.</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("acModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("acModal").style.display="none";
+}
+</script>
+
+{% endblock %}

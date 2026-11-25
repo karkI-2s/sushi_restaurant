@@ -1,0 +1,619 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}About | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* HERO SLIDER */
+
+.hero-slider{
+position:relative;
+height:420px;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.hero-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+font-size:40px;
+font-weight:bold;
+text-align:center;
+background:rgba(0, 0, 0, 0);
+padding:20px 40px;
+border-radius:10px;
+}
+
+
+/* HISTORY */
+
+.history{
+padding:60px 80px;
+font-size:18px;
+line-height:1.8;
+}
+
+
+/* GLASSMORPHISM CARDS */
+
+.about-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:40px 60px;
+}
+
+.about-card{
+
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:15px;
+padding:30px;
+text-align:center;
+color:white;
+box-shadow:0 10px 30px rgba(6, 250, 80, 0.91);
+transition:0.4s;
+}
+
+.about-card:hover{
+transform:translateY(-10px) scale(1.03);
+}
+
+.about-card h3{
+margin-bottom:10px;
+color:#ffd700;
+}
+
+
+/* BASIC INFO */
+
+.basic-info{
+padding:60px 80px;
+}
+
+.website-links a{
+
+display:inline-block;
+margin:10px;
+padding:12px 25px;
+background:#d4af37;
+color:white;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.website-links a:hover{
+background:#b8962e;
+}
+
+
+.about-photos{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+padding:60px;
+
+}
+
+.photo-card{
+
+position:relative;
+overflow:hidden;
+border-radius:16px;
+cursor:pointer;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+transition:0.4s;
+
+}
+
+/* hover lift */
+
+.photo-card:hover{
+
+transform:translateY(-10px) scale(1.03);
+
+}
+
+/* image */
+
+.photo-card img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.5s;
+
+}
+
+/* zoom */
+
+.photo-card:hover img{
+
+transform:scale(1.15);
+
+}
+
+/* overlay */
+
+.photo-overlay{
+
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:20px;
+background:linear-gradient(
+transparent,
+rgba(0,0,0,0.8)
+);
+
+color:white;
+
+transform:translateY(60%);
+transition:0.5s;
+
+}
+
+/* slide up */
+
+.photo-card:hover .photo-overlay{
+
+transform:translateY(0);
+
+}
+
+.photo-overlay h3{
+
+color:#ffd700;
+margin-bottom:5px;
+
+}
+
+/* POPUP */
+
+.photo-popup{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+
+}
+
+.photo-popup img{
+
+max-width:80%;
+max-height:80%;
+border-radius:10px;
+
+}
+
+.close-popup{
+
+position:absolute;
+top:30px;
+right:40px;
+font-size:35px;
+color:white;
+cursor:pointer;
+
+}
+
+
+.map-section{
+
+text-align:center;
+padding:60px;
+
+}
+
+.map-section img{
+
+width:60%;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.map-section p{
+
+margin-top:15px;
+font-size:17px;
+line-height:1.7;
+
+}
+.location-section{
+
+padding:70px 60px;
+text-align:center;
+
+}
+
+.location-section h2{
+
+font-size:32px;
+margin-bottom:40px;
+color:#ffd700;
+
+}
+
+.location-wrapper{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+
+}
+
+.location-info{
+
+text-align:left;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.location-info p{
+
+margin:10px 0;
+font-size:16px;
+
+}
+
+.direction-btn{
+
+display:inline-block;
+margin-top:15px;
+padding:12px 25px;
+background:#d4af37;
+color:white;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+
+}
+
+.direction-btn:hover{
+
+background:#b8962e;
+
+}
+
+.map-container{
+
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+</style>
+
+
+<!-- HERO SLIDER -->
+
+<div class="hero-slider">
+
+<div class="slide active" style="background-image:url('{% static 'css/images/car60.jpg' %}')"></div>
+
+<div class="slide" style="background-image:url('{% static 'css/images/car59.jpg' %}')"></div>
+
+<div class="slide" style="background-image:url('{% static 'css/images/car54.jpg' %}')"></div>
+
+<div class="hero-text">
+UB SUSHI RESTAURANT 🍣
+</div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="history">
+
+<h2>Historical Overview</h2>
+
+<p>
+UB Sushi Restaurant brings authentic Japanese sushi culture to Nepal.
+Inspired by traditional Japanese dining philosophy, UB Sushi focuses
+on freshness, quality, and a relaxing dining atmosphere.
+</p>
+
+<p>
+From classic nigiri to modern sushi rolls, UB Sushi combines Japanese
+tradition with modern culinary creativity to create unforgettable flavors.
+</p>
+
+</div>
+
+
+<!-- GLASS CARDS -->
+
+<div class="about-grid">
+
+<div class="about-card" onclick="toggleCard(this)">
+<div class="card-icon">🍣</div>
+<h3>Fresh Sushi</h3>
+<p class="short">Prepared daily using premium ingredients.</p>
+
+<div class="card-details">
+<p>
+Our sushi chefs prepare fresh sushi every day using carefully
+selected fish, premium rice, and authentic Japanese techniques.
+Each bite is crafted to deliver the perfect balance of taste,
+texture, and freshness that sushi lovers expect.
+</p>
+</div>
+
+</div>
+
+
+<div class="about-card" onclick="toggleCard(this)">
+<div class="card-icon">🎌</div>
+<h3>Japanese Style</h3>
+<p class="short">Traditional sushi taste with modern presentation.</p>
+
+<div class="card-details">
+<p>
+UB Sushi follows traditional Japanese culinary philosophy.
+From sushi preparation to plating and restaurant atmosphere,
+we bring the elegance of Japan to every dining experience.
+</p>
+</div>
+
+</div>
+
+
+<div class="about-card" onclick="toggleCard(this)">
+<div class="card-icon">🚚</div>
+<h3>Fast Delivery</h3>
+<p class="short">Quick and fresh sushi delivery service.</p>
+
+<div class="card-details">
+<p>
+Enjoy restaurant-quality sushi from the comfort of your home.
+Our fast delivery system ensures your sushi arrives fresh,
+beautifully packed, and ready to enjoy.
+</p>
+</div>
+
+</div>
+
+
+<div class="about-card" onclick="toggleCard(this)">
+<div class="card-icon">👨‍🍳</div>
+<h3>Sushi Classes</h3>
+<p class="short">Learn sushi making from professional chefs.</p>
+
+<div class="card-details">
+<p>
+Join our sushi classes and learn authentic sushi making from
+experienced chefs. Discover knife skills, rice preparation,
+and professional sushi techniques step by step.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BASIC INFO -->
+
+<div class="basic-info">
+
+<h2>Basic Information</h2>
+
+<p>
+Welcome to UB Sushi Restaurant. Experience authentic Japanese sushi
+in a warm and elegant atmosphere.
+</p>
+
+<div class="website-links">
+
+<a href="https://www.sushinepal.net/" target="_blank">UB Sushi Website</a>
+
+<a href="https://www.tripadvisor.com" target="_blank">Around UB Sushi</a>
+
+<a href="https://www.thenepaltravelguide.com/" target="_blank">Explore Nepal</a>
+
+</div>
+
+</div>
+
+
+<!-- PHOTO GALLERY -->
+
+<div class="about-photos">
+
+<div class="photo-card" onclick="openPhoto(this)">
+<img src="{% static 'css/images/car60.jpg' %}">
+<div class="photo-overlay">
+<h3>Sushi Roll</h3>
+<p>
+Freshly rolled sushi filled with premium seafood,
+Japanese rice, and delicious flavors crafted by
+our expert sushi chefs.
+</p>
+</div>
+</div>
+
+<div class="photo-card" onclick="openPhoto(this)">
+<img src="{% static 'css/images/car59.jpg' %}">
+<div class="photo-overlay">
+<h3>Nigiri Sushi</h3>
+<p>
+Traditional Japanese nigiri made with perfectly
+seasoned rice and fresh fish slices placed carefully
+on top.
+</p>
+</div>
+</div>
+
+<div class="photo-card" onclick="openPhoto(this)">
+<img src="{% static 'css/images/car54.jpg' %}">
+<div class="photo-overlay">
+<h3>Sashimi</h3>
+<p>
+Pure slices of fresh fish served in authentic
+Japanese style highlighting the natural flavor
+of premium seafood.
+</p>
+</div>
+</div>
+
+<div class="photo-card" onclick="openPhoto(this)">
+<img src="{% static 'css/images/car48.jpg' %}">
+<div class="photo-overlay">
+<h3>Mixed Sushi Set</h3>
+<p>
+A colorful assortment of sushi including rolls,
+nigiri, and sashimi prepared for the perfect
+sushi experience.
+</p>
+</div>
+</div>
+
+</div>
+
+
+<!-- POPUP VIEW -->
+<div class="photo-popup" id="photoPopup">
+<span class="close-popup" onclick="closePhoto()">✖</span>
+<img id="popupImage">
+</div>
+
+
+<!-- MAP -->
+
+<div class="location-section">
+
+<h2>📍 UB Sushi Location</h2>
+
+<div class="location-wrapper">
+
+<!-- Location Info -->
+<div class="location-info">
+
+<h3>Visit Our Restaurant</h3>
+
+<p>
+UB Sushi Restaurant brings authentic Japanese sushi experience to Nepal.
+Enjoy fresh sushi prepared by professional chefs in a relaxing atmosphere.
+</p>
+
+<p><strong>Address:</strong> Kathmandu, Nepal</p>
+
+<p><strong>Phone:</strong> +977-9817147117</p>
+
+<p><strong>Email:</strong> ubsushi@email.com</p>
+
+<a href="https://www.google.com/maps?q=Kathmandu,Nepal" target="_blank" class="direction-btn">
+Get Directions
+</a>
+
+</div>
+
+
+<!-- Google Map -->
+
+<div class="map-container">
+
+<iframe
+src="https://www.google.com/maps?q=Kathmandu,Nepal&output=embed"
+width="100%"
+height="350"
+style="border:0;"
+loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* AUTO HERO SLIDER */
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function showSlide(){
+
+slides.forEach((slide)=>slide.classList.remove("active"));
+
+index++;
+
+if(index>=slides.length){
+index=0;
+}
+
+slides[index].classList.add("active");
+
+}
+
+setInterval(showSlide,4000);
+
+</script>
+<script>
+
+function toggleCard(card){
+
+card.classList.toggle("active");
+
+}
+
+</script>
+<script>
+
+function openPhoto(card){
+
+let img = card.querySelector("img").src;
+
+document.getElementById("popupImage").src = img;
+
+document.getElementById("photoPopup").style.display="flex";
+
+}
+
+function closePhoto(){
+
+document.getElementById("photoPopup").style.display="none";
+
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,409 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Private Room | UB Restaurant & Hotel</title>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#020617;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== HERO SECTION ===== */
+
+.hero{
+    height: 65vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+
+    /* Background Image */
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/htls.jpg' %}") no-repeat center center;
+
+    background-size: cover;
+    background-attachment: fixed; /* premium parallax effect */
+}
+
+/* Dark overlay (extra clarity) */
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.2);
+}
+
+/* Content */
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+/* Title */
+.hero h1{
+    font-size:60px;
+    letter-spacing:3px;
+    text-shadow:0 5px 15px rgba(255, 0, 0, 0.7);
+    animation: floatText 4s ease-in-out infinite;
+}
+
+/* Subtitle */
+.hero p{
+    font-size:20px;
+    margin-top:10px;
+    opacity:0.9;
+}
+
+/* Button */
+.hero-btn{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background: linear-gradient(45deg, #ff0000, #ff4d4d);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 10px 25px rgba(255,0,0,0.6);
+}
+
+/* Floating animation */
+@keyframes floatText{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .hero h1{
+        font-size:35px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+}
+
+.hero h1{
+font-size:55px;
+letter-spacing:3px;
+text-shadow:0 5px 10px rgba(211, 38, 38, 0.86);
+animation: floatText 4s ease-in-out infinite;
+}
+
+@keyframes floatText{
+0%{transform:translateY(0px)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0px)}
+}
+
+/* SECTION */
+
+.section{
+padding:80px 10%;
+text-align:center;
+}
+
+/* VIDEO */
+
+.video-box{
+margin-top:40px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.video-card{
+width:300px;
+}
+
+.small-video{
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+.video-title{
+margin-top:10px;
+font-size:18px;
+font-weight:bold;
+color:#fbbf24;
+}
+
+.video-desc{
+font-size:14px;
+color:#cbd5f5;
+}
+
+/* DESCRIPTION */
+
+.desc{
+max-width:900px;
+margin:auto;
+line-height:1.7;
+color:#cbd5f5;
+margin-top:20px;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:60px 10%;
+}
+
+.gallery-card{
+cursor:pointer;
+transition:0.4s;
+}
+
+.gallery-card:hover{
+transform:scale(1.05);
+}
+
+.gallery img{
+width:100%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0, 0, 0, 0);
+}
+
+.photo-title{
+font-weight:bold;
+margin-top:10px;
+color:#fbbf24;
+}
+
+.photo-desc{
+font-size:14px;
+color:#cbd5f5;
+}
+
+/* POPUP IMAGE */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.popup img{
+max-width:80%;
+border-radius:20px;
+animation:zoom 0.5s;
+}
+
+@keyframes zoom{
+from{transform:scale(0.5)}
+to{transform:scale(1)}
+}
+
+/* FLOAT LIGHT */
+
+.light{
+position:fixed;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* BUTTON */
+
+.btn{
+display:inline-block;
+margin:80px;
+padding:15px 40px;
+background:#f59e0b;
+color:white;
+text-decoration:none;
+border-radius:30px;
+transition:0.4s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="light" style="left:10%;animation-delay:1s"></div>
+<div class="light" style="left:20%;animation-delay:3s"></div>
+<div class="light" style="left:35%;animation-delay:5s"></div>
+
+<!-- HERO -->
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to UB Hotel</h1>
+        <p>Luxury Stay Experience</p>
+    </div>
+</div>
+
+<!-- INTRO -->
+
+<section class="section">
+
+<h2 data-aos="fade-up">Exclusive Private Dining Experience</h2>
+
+<p class="desc">
+Enjoy a peaceful and luxurious dining experience in our private rooms.
+Perfect for family gatherings, romantic dinners, and special celebrations.
+</p>
+
+</section>
+
+<!-- VIDEO SECTION -->
+
+<section class="section">
+
+<h2 data-aos="fade-up">Private Room Experience</h2>
+
+<div class="video-box">
+
+<div class="video-card">
+
+<video autoplay muted loop playsinline class="small-video">
+<source src="{% static 'css/videos/v7.mp4' %}" type="video/mp4">
+</video>
+
+<div class="video-title">Golden Sakura Private Dining</div>
+<div class="video-desc">
+Experience the elegance of our Japanese-inspired private dining room
+with warm lighting and peaceful atmosphere.
+</div>
+
+</div>
+
+
+<div class="video-card">
+
+<video autoplay muted loop playsinline class="small-video">
+<source src="{% static 'css/videos/vv.mp4' %}" type="video/mp4">
+</video>
+
+<div class="video-title">Luxury Zen Celebration Room</div>
+<div class="video-desc">
+A perfect place for romantic dinners, family gatherings,
+and special celebrations with premium service.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<h2 style="text-align:center;">Private Room Gallery</h2>
+
+<div class="gallery">
+
+<div class="gallery-card" onclick="openImg(this)">
+<img src="{% static 'css/images/z1.jpg' %}">
+<div class="photo-title">Imperial Sakura Room</div>
+<div class="photo-desc">Elegant Japanese luxury private dining room.</div>
+</div>
+
+<div class="gallery-card" onclick="openImg(this)">
+<img src="{% static 'css/images/z2.jpg' %}">
+<div class="photo-title">Royal Zen Lounge</div>
+<div class="photo-desc">Peaceful luxury dining environment.</div>
+</div>
+
+<div class="gallery-card" onclick="openImg(this)">
+<img src="{% static 'css/images/z3.jpg' %}">
+<div class="photo-title">Golden Harmony Suite</div>
+<div class="photo-desc">Premium interior design with warm lighting.</div>
+</div>
+
+<div class="gallery-card" onclick="openImg(this)">
+<img src="{% static 'css/images/z4.jpg' %}">
+<div class="photo-title">Luxury Family Room</div>
+<div class="photo-desc">Perfect space for family celebrations.</div>
+</div>
+
+<div class="gallery-card" onclick="openImg(this)">
+<img src="{% static 'css/images/z5.jpg' %}">
+<div class="photo-title">VIP Private Dining</div>
+<div class="photo-desc">Exclusive premium dining experience.</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup" onclick="closeImg()">
+<img id="popupImg">
+</div>
+
+<center>
+<a href="/" class="btn">⬅ Back Home</a>
+</center>
+
+<script>
+
+function openImg(card){
+let img=card.querySelector("img").src;
+document.getElementById("popup").style.display="flex";
+document.getElementById("popupImg").src=img;
+}
+
+function closeImg(){
+document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({duration:1000});
+</script>
+
+</body>
+</html>

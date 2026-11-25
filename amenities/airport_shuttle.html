@@ -1,0 +1,351 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Airport Transfer | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#00111a,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:450px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/tt.jpg' %}") center/cover no-repeat;
+}
+
+.hero h1{
+    font-size:65px;
+    background:linear-gradient(90deg,#00c3ff,#ffff1c,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #00c3ff;}
+    to{ text-shadow:0 0 40px #ffff1c;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:80px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(0,195,255,0.3);
+}
+
+/* INTRO TEXT */
+.intro{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.intro h2{
+    color:#00c3ff;
+    margin-bottom:15px;
+}
+
+.intro p{
+    color:#ddd;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* VIDEO GRID */
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+    margin-bottom:70px;
+}
+
+.video-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    box-shadow:0 0 40px rgba(0,195,255,0.3);
+}
+
+.video-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(255,255,0,0.8);
+}
+
+.video-card video{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.video-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top,rgba(0,0,0,0.95),transparent);
+}
+
+.video-info h3{
+    margin:0 0 8px 0;
+    color:#ffff1c;
+}
+
+.video-info p{
+    font-size:14px;
+    color:#ddd;
+}
+
+/* FEATURES */
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.photo-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    box-shadow:0 0 30px rgba(0,195,255,0.2);
+}
+
+.photo-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.card-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+    transform:translateY(60%);
+    transition:.5s;
+}
+
+.card-info h3{
+    margin:0 0 8px 0;
+    font-size:20px;
+    color:#ffff1c;
+}
+
+.card-info p{
+    font-size:14px;
+    color:#ddd;
+    opacity:0;
+    transition:.5s;
+}
+
+.photo-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(255,255,0,0.8);
+}
+
+.photo-card:hover img{
+    transform:scale(1.1);
+}
+
+.photo-card:hover .card-info{
+    transform:translateY(0);
+}
+
+.photo-card:hover .card-info p{
+    opacity:1;
+}
+
+/* BUTTON */
+.center{text-align:center;}
+
+.book-btn{
+    display:inline-block;
+    margin-top:60px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#00c3ff,#ffff1c);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    transition:.4s;
+}
+
+.book-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ffff1c;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px white;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px #ffff1c;
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:#ffff1c;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Luxury Airport Transfer</h1>
+</div>
+
+<div class="section">
+<div class="glass-box">
+
+<div class="intro">
+<h2>Seamless Pickup & Drop Service</h2>
+<p>
+Enjoy stress-free travel with our 24/7 airport pickup and drop service.
+We provide luxury vehicles, professional chauffeurs, real-time flight tracking,
+VIP meet & greet service, luggage assistance, and comfortable rides
+to ensure your journey is smooth from airport to hotel.
+</p>
+</div>
+
+<!-- VIDEOS -->
+<div class="video-grid">
+
+<div class="video-card">
+<video src="{% static 'css/videos/airport1.mp4' %}" autoplay muted loop></video>
+<div class="video-info">
+<h3>VIP Airport Pickup</h3>
+<p>Professional chauffeur welcomes you with name board and assists with luggage.</p>
+</div>
+</div>
+
+<div class="video-card">
+<video src="{% static 'css/videos/airport2.mp4' %}" autoplay muted loop></video>
+<div class="video-info">
+<h3>Luxury Travel Experience</h3>
+<p>Premium sedan and SUV vehicles with full comfort and safety features.</p>
+</div>
+</div>
+
+</div>
+
+<!-- FEATURES -->
+<div class="photo-grid">
+
+<div class="photo-card">
+<img src="{% static 'css/images/a1.jpg' %}">
+<div class="card-info">
+<h3>Flight Tracking</h3>
+<p>We monitor your flight status to adjust pickup time automatically.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/a2.jpg' %}">
+<div class="card-info">
+<h3>Professional Chauffeur</h3>
+<p>Experienced drivers trained in hospitality and safe driving.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/a3.jpg' %}">
+<div class="card-info">
+<h3>Luxury Vehicles</h3>
+<p>Premium cars equipped with AC, WiFi and comfortable seating.</p>
+</div>
+</div>
+
+<div class="photo-card">
+<img src="{% static 'css/images/a4.jpg' %}">
+<div class="card-info">
+<h3>24/7 Availability</h3>
+<p>Round-the-clock service for arrivals and departures anytime.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="book-btn" onclick="openModal()">Book Airport Transfer</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<div class="modal" id="airportModal">
+<div class="modal-content">
+<h2>Booking Confirmed ✈️</h2>
+<p>Your airport transfer has been scheduled successfully.</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("airportModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("airportModal").style.display="none";
+}
+</script>
+
+{% endblock %}

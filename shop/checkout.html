@@ -1,0 +1,157 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}Checkout | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+.checkout-container {
+    max-width: 700px;
+    margin: 80px auto;
+    background: #ffffff;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.checkout-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #E63946;
+    font-weight: bold;
+}
+
+.checkout-total {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    color: #1D3557;
+    font-weight: 600;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.payment-option {
+    display: block;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.payment-option:hover {
+    border-color: #E63946;
+    background: #fff5f6;
+}
+
+.pay-btn {
+    padding: 16px;
+    background: linear-gradient(45deg, #E63946, #ff4d5a);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.pay-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(230,57,70,0.4);
+}
+
+.secure-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    color: gray;
+}
+</style>
+
+<div class="checkout-container">
+
+    <h2 class="checkout-title">🚚 Delivery & Payment</h2>
+
+    <div class="checkout-total">
+        Total: ¥{{ total_amount }}
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="text" name="phone" placeholder="Phone Number" required>
+        <textarea name="address" placeholder="Delivery Address" required></textarea>
+
+       <select name="delivery_area" required>
+    <option value="">Select Delivery Area</option>
+
+    <option value="kathmandu">Kathmandu (+Rs.100)</option>
+    <option value="lalitpur">Lalitpur (+Rs.100)</option>
+    <option value="bhaktapur">Bhaktapur (+Rs.100)</option>
+    <option value="pokhara">Pokhara (+Rs.150)</option>
+    <option value="bharatpur">Bharatpur (+Rs.150)</option>
+    <option value="biratnagar">Biratnagar (+Rs.200)</option>
+    <option value="birgunj">Birgunj (+Rs.200)</option>
+    <option value="butwal">Butwal (+Rs.150)</option>
+    <option value="dharan">Dharan (+Rs.200)</option>
+    <option value="itahari">Itahari (+Rs.200)</option>
+    <option value="hetauda">Hetauda (+Rs.150)</option>
+    <option value="janakpur">Janakpur (+Rs.200)</option>
+    <option value="nepalgunj">Nepalgunj (+Rs.250)</option>
+    <option value="dhangadhi">Dhangadhi (+Rs.250)</option>
+    <option value="ghorahi">Ghorahi (+Rs.200)</option>
+    <option value="tulsipur">Tulsipur (+Rs.200)</option>
+    <option value="damak">Damak (+Rs.200)</option>
+    <option value="kirtipur">Kirtipur (+Rs.100)</option>
+    <option value="banepa">Banepa (+Rs.120)</option>
+    <option value="dhulikhel">Dhulikhel (+Rs.120)</option>
+    <option value="birtamod">Birtamod (+Rs.220)</option>
+    <option value="kalaiya">Kalaiya (+Rs.200)</option>
+    <option value="malangwa">Malangwa (+Rs.220)</option>
+    <option value="lamki">Lamki (+Rs.250)</option>
+    <option value="bhairahawa">Bhairahawa (+Rs.180)</option>
+    <option value="gaur">Gaur (+Rs.220)</option>
+    <option value="baglung">Baglung (+Rs.200)</option>
+    <option value="ilam">Ilam (+Rs.220)</option>
+    <option value="tikapur">Tikapur (+Rs.250)</option>
+    <option value="rajbiraj">Rajbiraj (+Rs.220)</option>
+</select>
+        <label class="payment-option">
+            <input type="radio" name="payment_method" value="card" checked>
+            💳 Card (Apple & Google Pay Supported)
+        </label>
+
+        <label class="payment-option">
+            <input type="radio" name="payment_method" value="paypay">
+            💴 PayPay
+        </label>
+
+        <label class="payment-option">
+            <input type="radio" name="payment_method" value="cod">
+            💵 Cash on Delivery
+        </label>
+
+        <button type="submit" class="pay-btn">Place Order</button>
+    </form>
+
+    <p class="secure-text">
+        🔒 Secure payments powered by Stripe.
+    </p>
+
+</div>
+
+{% endblock %}

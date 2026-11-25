@@ -1,0 +1,504 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{% block title %}UB Sushi{% endblock %}</title>
+
+<link rel="icon" type="image/png" href="{% static 'css/images/ubapp.jpg' %}">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- PWA APP INSTALL SUPPORT -->
+<link rel="manifest" href="{% static 'manifest.json' %}">
+<meta name="theme-color" content="#ff2d87">
+
+<link rel="apple-touch-icon" href="{% static 'css/images/ubapp.jpg' %}">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#0f0f0f;
+color:white;
+overflow-x:hidden;
+animation:fadePage .8s ease;
+}
+
+@keyframes fadePage{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== PARTICLE BACKGROUND ===== */
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+
+background: linear-gradient(
+135deg,
+#2b1a12,
+#6a337a,
+#9b623a
+);
+}
+
+/* ===== NEON NAVBAR ===== */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:#111;
+box-shadow:0 0 20px #00ff4c;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#fff;
+text-shadow:0 0 10px #ff00bf, 0 0 20px #00ff22;
+}
+
+/* NAV LINKS */
+.nav-links{
+list-style:none;
+display:flex;
+gap:30px;
+}
+
+.nav-links li{
+perspective:500px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+padding:8px 14px;
+border-radius:8px;
+transition:.3s;
+display:inline-block;
+transform-style:preserve-3d;
+}
+
+/* 3D Hover */
+.nav-links a:hover{
+transform:rotateX(15deg) rotateY(10deg) scale(1.1);
+background:#e63946;
+box-shadow:0 0 15px #09ff00;
+}
+
+/* ===== HAMBURGER ===== */
+
+.hamburger{
+display:none;
+cursor:pointer;
+flex-direction:column;
+gap:6px;
+}
+
+.bar{
+width:30px;
+height:3px;
+background:white;
+transition:.4s;
+border-radius:3px;
+}
+
+.hamburger.active .bar:nth-child(1){
+transform:rotate(45deg) translate(6px,6px);
+}
+
+.hamburger.active .bar:nth-child(2){
+opacity:0;
+}
+
+.hamburger.active .bar:nth-child(3){
+transform:rotate(-45deg) translate(7px,-7px);
+}
+
+/* Responsive */
+@media(max-width:1200px){
+.nav-links{
+position:absolute;
+right:-100%;
+top:70px;
+flex-direction:column;
+background:#111;
+width:250px;
+padding:30px;
+transition:.5s;
+box-shadow:0 0 20px #a6ff00;
+}
+.nav-links.show{
+right:0;
+}
+.hamburger{
+display:flex;
+}
+}
+
+/* ===== SOCIAL ICON BAR ===== */
+
+.social-bar{
+position:fixed;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+display:flex;
+flex-direction:column;
+gap:15px;
+z-index:999;
+}
+
+.social{
+width:45px;
+height:45px;
+background:#ff3c3c;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:20px;
+text-decoration:none;
+transition:0.3s;
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+.social:hover{
+transform:scale(1.2) rotate(8deg);
+background:#ff0000;
+}
+
+/* ===== WHATSAPP BUTTON ===== */
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+box-shadow:0 10px 25px rgba(0,0,0,.4);
+z-index:999;
+transition:.3s;
+}
+
+.whatsapp:hover{
+transform:scale(1.2) rotate(10deg);
+}
+
+/* ===== CONTENT ===== */
+.content{
+padding:50px;
+min-height:70vh;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+background:#111;
+padding:60px;
+box-shadow:0 0 30px #220bf8 inset;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+}
+
+.footer h3{
+cursor:pointer;
+margin-bottom:10px;
+color:#fff;
+}
+
+.footer-content{
+max-height:0;
+overflow:hidden;
+transition:max-height .5s ease;
+}
+
+.footer-content.show{
+max-height:500px;
+}
+
+.footer-content a{
+display:block;
+text-decoration:none;
+color:#ccc;
+margin:8px 0;
+transition:.3s;
+}
+
+.footer-content a:hover{
+color:#e63946;
+transform:translateX(5px);
+}
+
+.footer-bottom{
+margin-top:30px;
+border-top:1px solid #66f3b1;
+padding-top:20px;
+text-align:center;
+color:#aaa;
+}
+
+/* ===== SUSHI CLICK ANIMATION ===== */
+
+@keyframes flySushi{
+0%{transform:translateY(0) scale(1);opacity:1;}
+100%{transform:translateY(-120px) scale(2);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+<nav class="navbar">
+
+<div class="logo">🍣 UB Sushi</div>
+
+<div class="hamburger" id="hamburger" onclick="toggleMenu()">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</div>
+
+<ul class="nav-links" id="navLinks">
+
+    <li><a href="{% url 'index' %}">🏠 Home</a></li>
+    <li><a href="{% url 'about' %}">📖 About</a></li>
+    <li><a href="{% url 'menu_view' %}">🍣 Menu</a></li>
+    <li><a href="{% url 'contact' %}">📞 Contact</a></li>
+    <li><a href="{% url 'side_dishes' %}">🍜 Side</a></li>
+    <li><a href="{% url 'cart_view' %}">🛒 Cart</a></li>
+    <li><a href="{% url 'hotel' %}">🏨 Hotel</a></li>
+    <li><a href="{% url 'login' %}">🔐 Login</a></li>
+    <li><a href="{% url 'register' %}">📝 Register</a></li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">Popular ⬇</a>
+        <div class="dropdown-menu">
+            <a href="{% url 'date' %}">🍣 Best spots for a date</a>
+            <a href="{% url 'casual' %}">🍱 Casual dining</a>
+            <a href="{% url 'business' %}">🏢 Business meeting</a>
+            <a href="{% url 'group' %}">👨‍👩‍👧‍👦 Group friendly</a>
+        </div>
+    </li>
+
+</ul>
+    </div>
+</li>
+</ul>
+
+</nav>
+</header>
+
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+
+<!-- SOCIAL ICONS -->
+<div class="social-bar">
+
+<a href="https://www.facebook.com/" target="_blank" class="social">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="https://www.instagram.com/" target="_blank" class="social">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://line.me/" target="_blank" class="social">
+<i class="fab fa-line"></i>
+</a>
+
+<a href="https://www.tiktok.com/" target="_blank" class="social">
+<i class="fab fa-tiktok"></i>
+</a>
+
+</div>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/819000000000" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-container">
+
+<div>
+<h3 onclick="toggleFooter('popular')">Popular ⬇</h3>
+<div class="footer-content" id="popular">
+<div class="popular-item" onclick="location.href='{% url 'date' %}'">
+🍣 Best spots for a date
+</div>
+
+<div class="popular-item" onclick="location.href='{% url 'casual' %}'">
+🍱 Casual dining
+</div>
+
+<div class="popular-item" onclick="location.href='{% url 'business' %}'">
+🏢 Business meeting
+</div>
+
+<div class="popular-item" onclick="location.href='{% url 'group' %}'">
+👨‍👩‍👧‍👦 Group friendly
+</div>
+</div>
+</div>
+
+<div>
+<h3>Navigation</h3>
+<a href="{% url 'index' %}">Home</a>
+<a href="{% url 'menu_view' %}">Menu</a>
+</div>
+
+<div>
+<h3>Account</h3>
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'register' %}">Register</a>
+</div>
+
+<div>
+<h3>Company</h3>
+<a href="{% url 'about' %}">About</a>
+<a href="{% url 'contact' %}">Contact</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 UB Sushi. Ultra Premium Experience.
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+
+particlesJS("particles-js",{
+particles:{
+number:{value:60},
+size:{value:3},
+color:{value:"#00b7ff"},
+line_linked:{enable:true,color:"#ffffff"},
+move:{speed:4}
+}
+});
+
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("show");
+document.getElementById("hamburger").classList.toggle("active");
+}
+
+function toggleFooter(id){
+document.getElementById(id).classList.toggle("show");
+}
+
+/* 🍣 CLICK SUSHI EFFECT */
+
+document.addEventListener("click", function(e){
+
+let sushi=document.createElement("div");
+sushi.innerHTML="🍣";
+
+sushi.style.position="fixed";
+sushi.style.left=e.clientX+"px";
+sushi.style.top=e.clientY+"px";
+sushi.style.fontSize="30px";
+sushi.style.pointerEvents="none";
+sushi.style.animation="flySushi 1s ease-out";
+
+document.body.appendChild(sushi);
+
+setTimeout(()=>{sushi.remove()},1000);
+
+});
+
+</script>
+
+<!-- SERVICE WORKER REGISTER -->
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register("{% static 'sw.js' %}")
+.then(function(){
+console.log("Service Worker Registered");
+});
+}
+</script>
+<script>
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+
+e.preventDefault();
+deferredPrompt = e;
+
+/* Install button create */
+
+let installBtn = document.createElement("button");
+installBtn.innerText = "📱 Install UB Sushi App";
+
+installBtn.style.position = "fixed";
+installBtn.style.bottom = "100px";
+installBtn.style.left = "20px";
+installBtn.style.padding = "12px 18px";
+installBtn.style.background = "#ff2d87";
+installBtn.style.color = "white";
+installBtn.style.border = "none";
+installBtn.style.borderRadius = "10px";
+installBtn.style.cursor = "pointer";
+installBtn.style.zIndex = "9999";
+installBtn.style.boxShadow = "0 10px 20px rgba(0,0,0,0.3)";
+
+document.body.appendChild(installBtn);
+
+/* click install */
+
+installBtn.addEventListener("click", () => {
+
+installBtn.style.display = "none";
+deferredPrompt.prompt();
+
+deferredPrompt.userChoice.then((choiceResult) => {
+
+if (choiceResult.outcome === "accepted") {
+console.log("User installed app");
+}
+
+deferredPrompt = null;
+
+});
+
+});
+
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Luxury Spa | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#2b1055,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:420px;
+    background:
+    linear-gradient(rgba(60, 206, 41, 0.51),rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/spa.jpg' %}") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:65px;
+    background:linear-gradient(90deg,#ff66cc,#cc99ff,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ff66cc;}
+    to{ text-shadow:0 0 40px #cc99ff;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:90px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(204,153,255,0.3);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+/* DESCRIPTION */
+.desc{
+    text-align:center;
+    font-size:18px;
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:50px;
+}
+
+/* GRID */
+.spa-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+.spa-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    transform-style:preserve-3d;
+    box-shadow:0 0 30px rgba(204,153,255,0.2);
+}
+
+.spa-card:hover{
+    transform:rotateY(8deg) rotateX(5deg) scale(1.07);
+    box-shadow:0 0 70px rgba(255,102,204,0.8);
+}
+
+.spa-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.spa-card:hover img{
+    transform:scale(1.1);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top,rgba(0,0,0,0.9),rgba(0,0,0,0.2));
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    opacity:0;
+    transition:.5s;
+    transform:translateY(50px);
+}
+
+.overlay h3{
+    color:#ff66cc;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.overlay p{
+    color:#ddd;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.spa-card:hover .overlay{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BUTTONS */
+.book-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff66cc,#cc99ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.4s;
+    border:none;
+}
+
+.book-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ff66cc;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ffffff,#cccccc);
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px #ffffff;
+}
+
+.center{text-align:center;}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px #cc99ff;
+    animation: popup .4s ease;
+}
+
+@keyframes popup{
+    from{transform:scale(.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:#ff66cc;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+    color:white;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Luxury Relaxing Spa</h1>
+</div>
+
+<div class="section">
+<div class="glass-box">
+
+<div class="desc">
+Experience deep relaxation at UB Sushi Hotel Spa.
+Our Japanese-inspired wellness treatments, aromatherapy massages and hot stone therapy
+will refresh your body and mind in a peaceful luxury environment.
+</div>
+
+<div class="spa-grid">
+
+<div class="spa-card">
+<img src="{% static 'css/images/spa.jpg' %}">
+<div class="overlay">
+<h3>Aromatherapy Massage</h3>
+<p>Relaxing essential oil massage designed to relieve stress and improve circulation.</p>
+</div>
+</div>
+
+<div class="spa-card">
+<img src="{% static 'css/images/spa1.jpg' %}">
+<div class="overlay">
+<h3>Hot Stone Therapy</h3>
+<p>Premium heated stone treatment to ease muscle tension and promote healing.</p>
+</div>
+</div>
+
+<div class="spa-card">
+<img src="{% static 'css/images/spa2.jpg' %}">
+<div class="overlay">
+<h3>Private Spa Room</h3>
+<p>Enjoy complete privacy in our luxury spa rooms with calming ambiance.</p>
+</div>
+</div>
+
+<div class="spa-card">
+<img src="{% static 'css/images/spa3.jpg' %}">
+<div class="overlay">
+<h3>Facial & Skin Care</h3>
+<p>Professional skincare treatments using high-quality organic products.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="book-btn" onclick="openModal()">Book Spa Session</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal" id="spaModal">
+<div class="modal-content">
+<h2>Booking Confirmed 💆</h2>
+<p>Your spa session has been successfully booked. We look forward to relaxing you!</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("spaModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("spaModal").style.display="none";
+}
+</script>
+
+{% endblock %}

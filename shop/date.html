@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍣 Romantic Sushi Date</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* ===== HERO ===== */
+.hero{
+height:80vh;
+background:linear-gradient(rgba(255, 255, 255, 0),rgba(3, 0, 0, 0)),
+url("https://images.unsplash.com/photo-1553621042-f6e147245754") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+text-shadow:0 5px 20px rgba(255,0,0,0.7);
+}
+
+.hero p{
+font-size:20px;
+}
+
+/* ===== INTRO ===== */
+.intro{
+text-align:center;
+padding:50px;
+max-width:900px;
+margin:auto;
+line-height:1.7;
+}
+
+/* ===== SLIDER ===== */
+.slider{
+width:90%;
+margin:40px auto;
+overflow:hidden;
+}
+
+.slide-track{
+display:flex;
+animation:scroll 25s linear infinite;
+}
+
+.slide-track img{
+width:260px;
+height:180px;
+margin-right:15px;
+border-radius:15px;
+object-fit:cover;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* ===== CARDS ===== */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:30px;
+}
+
+.card{
+background:#0f172a;
+border-radius:20px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.card:hover{
+transform:scale(1.05) rotateY(8deg);
+box-shadow:0 20px 50px rgba(255,0,0,0.5);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card h3{
+padding:10px;
+color:#ff4d4d;
+}
+
+.card p{
+padding:0 12px 15px;
+}
+
+/* ===== WHY SECTION ===== */
+.why{
+background:#111827;
+padding:50px;
+text-align:center;
+}
+
+.why h2{
+margin-bottom:20px;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.why-box{
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.why-box:hover{
+transform:translateY(-10px);
+background:#ff4d4d;
+}
+
+/* ===== BOOKING ===== */
+.booking{
+text-align:center;
+padding:50px;
+}
+
+input{
+padding:12px;
+margin:10px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:12px 25px;
+background:linear-gradient(45deg,#ff0000,#ff4d4d);
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ===== MAP ===== */
+.map{
+text-align:center;
+padding:40px;
+}
+
+iframe{
+width:90%;
+height:300px;
+border-radius:20px;
+}
+
+/* ===== HEART ===== */
+.heart{
+position:fixed;
+bottom:0;
+font-size:20px;
+color:red;
+animation:floatUp 5s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0); opacity:1;}
+100%{transform:translateY(-800px); opacity:0;}
+}
+.back-home{
+    text-align:center;
+    margin:50px 0;
+}
+
+.home-btn{
+    padding:14px 30px;
+    background:linear-gradient(45deg,#ff0000,#ff4d4d);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(255,0,0,0.5);
+}
+
+.home-btn:hover{
+    transform:scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>🍣 Romantic Sushi Date Experience</h1>
+<p>Where Love Meets Flavor ❤️</p>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+<h2>💖 A Perfect Sushi Date</h2>
+<p>
+A sushi date is not just about food — it’s about connection, atmosphere, and unforgettable moments.  
+Imagine sitting together under soft lights, sharing beautifully crafted sushi, listening to calm music, and enjoying a peaceful, romantic environment.  
+
+From Kathmandu’s cozy corners to Tokyo’s vibrant nights, sushi creates the perfect setting for meaningful conversations, laughter, and love.
+</p>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="slide-track">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+<img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305">
+
+<!-- DUPLICATE -->
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+<img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305">
+</div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<h3>📍 Kathmandu Date</h3>
+<p>Warm lighting, peaceful vibe, and romantic sushi setup perfect for couples.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<h3>🌄 Pokhara Date</h3>
+<p>Lake view, sunset atmosphere, and relaxing environment for love moments.</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1553621042-f6e147245754">
+<h3>🌃 Tokyo Date</h3>
+<p>Modern neon city lights with premium sushi experience.</p>
+</div>
+
+</div>
+
+<!-- WHY -->
+<div class="why">
+<h2>🌸 Why Choose Sushi Date?</h2>
+
+<div class="why-grid">
+
+<div class="why-box">💡 Romantic lighting & cozy seats</div>
+<div class="why-box">🍣 Fresh premium sushi</div>
+<div class="why-box">🎶 Calm music & peaceful vibe</div>
+<div class="why-box">📸 Instagram perfect moments</div>
+
+</div>
+</div>
+
+<!-- BOOKING -->
+<div class="booking">
+<h2>💌 Book Your Date</h2>
+<input type="text" placeholder="Your Name">
+<input type="date">
+<button onclick="alert('Booking Confirmed ❤️')">Book Now</button>
+</div>
+
+<!-- MAP -->
+<div class="map">
+<h2>📍 Find Us</h2>
+<iframe src="https://maps.google.com/maps?q=tokyo&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+<div class="back-home">
+    <a href="/" class="home-btn">🏠 Go Back Home</a>
+</div>
+<!-- HEART -->
+<script>
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"%";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},500);
+</script>
+
+</body>
+</html>

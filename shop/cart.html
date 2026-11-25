@@ -1,0 +1,375 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}Your Sushi Cart | UB Sushi{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* ============================= */
+/* 🔥 ANIMATED ROUND BANNER */
+/* ============================= */
+
+.cart-banner {
+    position: relative;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.banner-img {
+    width: 540px;
+    height: 440px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: rotateBanner 18s linear infinite;
+    box-shadow: 0 40px 80px rgba(192, 41, 41, 0.93);
+}
+
+.banner-logo {
+    position: absolute;
+    font-size: 3.5rem;
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+.banner-title {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #E63946;
+    animation: fadeUp 1.5s ease;
+}
+
+@keyframes rotateBanner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================= */
+/* 🛒 ORIGINAL CART DESIGN */
+/* ============================= */
+
+.cart-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cart-box {
+    display: flex;
+    gap: 25px;
+    background: pink;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(235, 23, 23, 0.85);
+    transition: 0.3s;
+}
+
+.cart-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(32, 151, 219, 0.84);
+}
+
+.cart-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.cart-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-item-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1D3557;
+}
+
+.cart-price {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.qty-btn {
+    background: #E63946;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.qty-btn:hover {
+    background: #f16987;
+}
+
+.qty-number {
+    font-weight: bold;
+}
+
+.remove-btn {
+    color: crimson;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* SUMMARY */
+.cart-summary {
+    background: #1ec3ec;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(18, 243, 93, 0.91);
+    text-align: right;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    padding: 12px 30px;
+    background: #E63946;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.checkout-btn:hover {
+    background: #c92f3b;
+}
+
+.empty-cart {
+    text-align: center;
+    margin-top: 60px;
+}
+
+/* ============================= */
+/* 🚀 MODERN SUSHI CART SECTION */
+/* ============================= */
+
+.modern-section {
+    margin-top: 120px;
+}
+
+.modern-title {
+    font-size: 2.3rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #1a6ee4;
+}
+
+/* GRID */
+.modern-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+/* MAIN IMAGE (FIXED) */
+.modern-main img {
+    width: 100%;           /* FULL WIDTH */
+    max-width: 600px;      /* CONTROL SIZE */
+    border-radius: 18px;
+    display: block;
+    margin: auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    transition: 0.4s;
+}
+
+.modern-main img:hover {
+    transform: scale(1.05);
+}
+
+/* THUMBNAILS (ONE LINE 🔥) */
+.modern-thumbs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modern-thumbs img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modern-thumbs img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(255,0,0,0.6);
+}
+
+/* INFO BOX */
+.modern-box {
+    margin-top: 40px;
+    background: #ee6fee;
+    padding: 30px;
+    border-radius: 18px;
+}
+
+/* TAGS */
+.modern-tags span {
+    display: inline-block;
+    background: #eee;
+    padding: 6px 14px;
+    margin: 6px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+/* MOBILE FIX */
+@media(max-width:768px){
+
+    .modern-top {
+        grid-template-columns: 1fr;
+    }
+
+    .modern-main img {
+        max-width: 100%;
+    }
+
+    .modern-thumbs {
+        flex-wrap: wrap; /* mobile ma wrap */
+    }
+}
+
+</style>
+
+
+<!-- 🔥 BANNER -->
+<div class="cart-banner">
+    <img src="{% static 'css/images/cartt.jpg' %}" class="banner-img">
+    <div class="banner-logo">🛒</div>
+    <div class="banner-title">Your Sushi Cart</div>
+</div>
+
+
+<div class="cart-container">
+
+{% if cart_items %}
+
+    {% for item in cart_items %}
+    <div class="cart-box">
+
+        {% if item.item.image %}
+            <img src="{{ item.item.image.url }}" class="cart-img">
+        {% else %}
+            <img src="{% static 'css/images/car32.jpg' %}" class="cart-img">
+        {% endif %}
+
+        <div class="cart-details">
+            <div>
+                <div class="cart-item-name">{{ item.item.name }}</div>
+                <div class="cart-price">¥{{ item.subtotal }}</div>
+            </div>
+
+            <div class="qty-control">
+                <a href="{% url 'update_cart' item.item.id 'decrease' %}" class="qty-btn">−</a>
+                <span class="qty-number">{{ item.quantity }}</span>
+                <a href="{% url 'update_cart' item.item.id 'increase' %}" class="qty-btn">+</a>
+            </div>
+
+            <a href="{% url 'remove_from_cart' item.item.id %}" class="remove-btn">
+                Remove Item
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+
+  <div class="cart-summary">
+    <div class="cart-box">
+        <h3>🧾 Order Summary</h3>
+        
+        <div class="cart-total">
+            Total: <span>¥{{ total }}</span>
+        </div>
+        <a href="{% url 'checkout' %}" class="checkout-btn">
+            🚀 Proceed to Checkout
+        </a>
+    </div>
+</div>
+
+{% else %}
+    <div class="empty-cart">
+        <h3>Your cart is empty 🥲</h3>
+    </div>
+{% endif %}
+
+</div>
+
+
+<!-- 🚀 MODERN SUSHI SECTION -->
+<div class="modern-section">
+    <h2 class="modern-title">Modern Sushi Cart Experience</h2>
+
+    <div class="modern-top">
+        <div class="modern-main">
+            <img src="{% static 'css/images/sushi-cart-main.jpg' %}" id="modernMain">
+        </div>
+
+        <div class="modern-thumbs">
+            <img src="{% static 'css/images/sushi-cart-main1.jpg' %}" onclick="changeModern(this)">
+            <img src="{% static 'css/images/sushi-cart-2.jpg' %}" onclick="changeModern(this)">
+            <img src="{% static 'css/images/sushi-cart-3.jpg' %}" onclick="changeModern(this)">
+        </div>
+    </div>
+
+    <div class="modern-box">
+        <h4>Features:</h4>
+        <ul>
+            <li>Side seats attach for transport</li>
+            <li>Dining bar doubles as cover</li>
+            <li>Premium sushi tools included</li>
+            <li>Modern Japanese city design</li>
+        </ul>
+
+        <h4 style="margin-top:20px;">Available Items:</h4>
+        <p>158+</p>
+
+    </div>
+</div>
+
+
+<script>
+function changeModern(element){
+    document.getElementById("modernMain").src = element.src;
+}
+</script>
+
+{% endblock %}

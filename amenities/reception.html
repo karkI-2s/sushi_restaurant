@@ -1,0 +1,281 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Reception | UB Sushi Hotel{% endblock %}
+{% block content %}
+
+<style>
+
+body{
+    margin:0;
+    background: radial-gradient(circle at top,#2c3e50,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+    height:420px;
+    background:
+    linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+    url("{% static 'css/images/reception.jpg' %}") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:65px;
+    background:linear-gradient(90deg,#ffcc00,#ffffff,#ff9900);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ffcc00;}
+    to{ text-shadow:0 0 40px #ffffff;}
+}
+
+/* SECTION */
+.section{
+    max-width:1200px;
+    margin:90px auto;
+}
+
+/* GLASS BOX */
+.glass-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    padding:60px;
+    border-radius:30px;
+    box-shadow:0 0 60px rgba(255,215,0,0.3);
+}
+
+/* DESCRIPTION */
+.desc{
+    text-align:center;
+    font-size:18px;
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:50px;
+}
+
+/* GRID */
+.reception-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+.reception-card{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.6s;
+    transform-style:preserve-3d;
+    box-shadow:0 0 30px rgba(255,215,0,0.2);
+}
+
+.reception-card:hover{
+    transform:rotateY(8deg) rotateX(5deg) scale(1.07);
+    box-shadow:0 0 70px rgba(255,215,0,0.8);
+}
+
+.reception-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.reception-card:hover img{
+    transform:scale(1.1);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top,rgba(0,0,0,0.9),rgba(0,0,0,0.2));
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    opacity:0;
+    transition:.5s;
+    transform:translateY(50px);
+}
+
+.overlay h3{
+    color:#ffd700;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.overlay p{
+    color:#ddd;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.reception-card:hover .overlay{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BUTTONS */
+.pay-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ffd700,#ff9900);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.4s;
+    border:none;
+}
+
+.pay-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ffd700;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 40px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ffffff,#cccccc);
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.4s;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px #ffffff;
+}
+
+.center{text-align:center;}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 50px gold;
+    animation: popup .4s ease;
+}
+
+@keyframes popup{
+    from{transform:scale(.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.close{
+    margin-top:20px;
+    padding:10px 25px;
+    background:gold;
+    border:none;
+    cursor:pointer;
+    border-radius:20px;
+}
+
+</style>
+
+<div class="hero">
+    <h1>Luxury Reception Lobby</h1>
+</div>
+
+<div class="section">
+<div class="glass-box">
+
+<div class="desc">
+Our 24/7 luxury reception desk welcomes all guests with premium hospitality.
+Guests can relax in the elegant lounge or complete secure payments at the counter.
+</div>
+
+<div class="reception-grid">
+
+<div class="reception-card">
+<img src="{% static 'css/images/r1.jpg' %}">
+<div class="overlay">
+<h3>Front Desk Service</h3>
+<p>Professional staff ready to assist with check-in, booking and payments anytime.</p>
+</div>
+</div>
+
+<div class="reception-card">
+<img src="{% static 'css/images/r2.jpg' %}">
+<div class="overlay">
+<h3>Luxury Lobby Lounge</h3>
+<p>Comfortable seating area where guests can relax while waiting or enjoying refreshments.</p>
+</div>
+</div>
+
+<div class="reception-card">
+<img src="{% static 'css/images/r3.jpg' %}">
+<div class="overlay">
+<h3>Secure Payment Counter</h3>
+<p>All guests can securely pay via card, cash or digital wallet at our reception.</p>
+</div>
+</div>
+
+<div class="reception-card">
+<img src="{% static 'css/images/r4.jpg' %}">
+<div class="overlay">
+<h3>Premium Hospitality</h3>
+<p>Experience Japanese-inspired hospitality with elegant interior design.</p>
+</div>
+</div>
+
+</div>
+
+<div class="center">
+<button class="pay-btn" onclick="openModal()">Pay Now at Reception</button><br>
+<a href="{% url 'hotel' %}" class="back-btn">← Go Back to Hotel Page</a>
+</div>
+
+</div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal" id="paymentModal">
+<div class="modal-content">
+<h2>Payment Successful 💳</h2>
+<p>Thank you for completing your payment at UB Sushi Hotel Reception.</p>
+<button class="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function openModal(){
+    document.getElementById("paymentModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("paymentModal").style.display="none";
+}
+</script>
+
+{% endblock %}
